@@ -1,0 +1,42 @@
+{
+  "default_max_generations": 15,
+  "horizons": [
+    90,
+    60,
+    30
+  ],
+  "InfiniteLoop": true,
+  "default_model_list": [
+    "LSTM"
+  ],
+  "default_ensemble": [
+    "auto",
+    "simple",
+    "horizontal",
+    "weighted",
+    "horizontal-max",
+    "horizontal-mean"
+  ],
+  "default_n_jobs": 4,
+  "default_transformer_list": [
+    "default"
+  ],
+  "default_num_validations": 3,
+  "raw_argv": [
+    "t:\\OneDrive\\1TB\\School\\python_local\\Power_day_v3\\6v3-autoTs_WeatherToDayWh.py",
+    "--default_max_generations",
+    "15",
+    "--horizons",
+    "[90, 60, 30]",
+    "--InfiniteLoop",
+    "True",
+    "--default_model_list",
+    "[\"LSTM\"]",
+    "--default_n_jobs",
+    "4",
+    "--default_transformer_list",
+    "default",
+    "--default_num_validations",
+    "3"
+  ]
+}

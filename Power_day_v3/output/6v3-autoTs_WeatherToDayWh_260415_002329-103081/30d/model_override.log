@@ -1,0 +1,1 @@
+2026-04-15T00:23:29.965084 - Model list validation removed all requested models; would fallback to 'default' but FORBID_MODEL_OVERRIDE=True. Skipping horizon 30.

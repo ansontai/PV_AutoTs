@@ -1,0 +1,43 @@
+{
+  "default_max_generations": 1,
+  "horizons": [
+    9,
+    6,
+    3
+  ],
+  "InfiniteLoop": false,
+  "default_model_list": [
+    "LSTM"
+  ],
+  "default_ensemble": [
+    "simple"
+  ],
+  "default_n_jobs": 4,
+  "default_transformer_list": [
+    "DifferencedTransformer",
+    "Scaler",
+    "MinMaxScaler",
+    "Detrend",
+    "DatepartRegression"
+  ],
+  "default_num_validations": 3,
+  "raw_argv": [
+    "t:\\OneDrive\\1TB\\School\\python_local\\Power_day_v3\\6v3-autoTs_WeatherToDayWh.py",
+    "--default_max_generations",
+    "1",
+    "--horizons",
+    "[9, 6, 3]",
+    "--InfiniteLoop",
+    "False",
+    "--default_model_list",
+    "[\"LSTM\"]",
+    "--default_ensemble",
+    "[\"simple\"]",
+    "--default_n_jobs",
+    "4",
+    "--default_transformer_list",
+    "[\"DifferencedTransformer\", \"Scaler\", \"MinMaxScaler\", \"Detrend\", \"DatepartRegression\"]",
+    "--default_num_validations",
+    "3"
+  ]
+}

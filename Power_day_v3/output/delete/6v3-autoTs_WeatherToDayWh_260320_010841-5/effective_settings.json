@@ -1,0 +1,48 @@
+{
+  "default_max_generations": 1,
+  "horizons": [
+    9,
+    6,
+    3
+  ],
+  "InfiniteLoop": false,
+  "default_model_list": [
+    "ARIMA",
+    "RollingRegression",
+    "WindowRegression",
+    "DatepartRegression",
+    "RandomForest",
+    "SVR",
+    "LSTM",
+    "RandomForest",
+    "ExtraTrees",
+    "XGBoost",
+    "LightGBM",
+    "MLP",
+    "ElasticNet",
+    "Ridge",
+    "Lasso"
+  ],
+  "default_ensemble": [
+    "auto",
+    "simple",
+    "horizontal",
+    "weighted",
+    "horizontal-max",
+    "horizontal-mean"
+  ],
+  "default_n_jobs": 4,
+  "default_transformer_list": [
+    [
+      "DifferencedTransformer",
+      "Scaler",
+      "MinMaxScaler",
+      "Detrend",
+      "DatepartRegression"
+    ]
+  ],
+  "default_num_validations": 3,
+  "raw_argv": [
+    "t:/OneDrive/1TB/School/python_local/Power_day_v3/6v3-autoTs_WeatherToDayWh.py"
+  ]
+}

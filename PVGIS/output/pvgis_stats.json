@@ -1,0 +1,10 @@
+{
+  "ref_path": "T:\\OneDrive\\1TB\\School\\python_local\\PVGIS\\my\\SolarRecord_260310_1829-daily-1d.csv",
+  "ref_col": "Wh",
+  "unit_detected": "kwh",
+  "min_wh": 248.47,
+  "max_wh": 10911.390000000001,
+  "min_kwh": 0.24847,
+  "max_kwh": 10.91139,
+  "count": 323
+}

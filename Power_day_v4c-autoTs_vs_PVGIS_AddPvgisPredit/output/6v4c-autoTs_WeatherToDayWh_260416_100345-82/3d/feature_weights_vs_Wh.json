@@ -1,0 +1,770 @@
+[
+  {
+    "column": "cos_DOY_k1_roll7",
+    "corr_with_Wh": -0.7362885881253476,
+    "abs_corr": 0.7362885881253476,
+    "weight": 0.02035715564687718
+  },
+  {
+    "column": "cos_DOY_k1",
+    "corr_with_Wh": -0.7111596022685549,
+    "abs_corr": 0.7111596022685549,
+    "weight": 0.019662380955831966
+  },
+  {
+    "column": "dayofyear_cos",
+    "corr_with_Wh": -0.7109365119111959,
+    "abs_corr": 0.7109365119111959,
+    "weight": 0.01965621287825842
+  },
+  {
+    "column": "Wh_roll_mean_7",
+    "corr_with_Wh": 0.6795317008437725,
+    "abs_corr": 0.6795317008437725,
+    "weight": 0.01878792205144002
+  },
+  {
+    "column": "Wh_roll_mean_14",
+    "corr_with_Wh": 0.6760640790741853,
+    "abs_corr": 0.6760640790741853,
+    "weight": 0.018692048073184135
+  },
+  {
+    "column": "Wh_lag1",
+    "corr_with_Wh": 0.6708342431013912,
+    "abs_corr": 0.6708342431013912,
+    "weight": 0.018547451801256474
+  },
+  {
+    "column": "Wh_roll_mean_30",
+    "corr_with_Wh": 0.6659541597045368,
+    "abs_corr": 0.6659541597045368,
+    "weight": 0.018412525606715763
+  },
+  {
+    "column": "Td dew point_roll7",
+    "corr_with_Wh": 0.592651055609192,
+    "abs_corr": 0.592651055609192,
+    "weight": 0.016385816618508367
+  },
+  {
+    "column": "TxSoil0cm_roll7",
+    "corr_with_Wh": 0.58632909734524,
+    "abs_corr": 0.58632909734524,
+    "weight": 0.016211024980490447
+  },
+  {
+    "column": "Temperature_roll7",
+    "corr_with_Wh": 0.5860178318268848,
+    "abs_corr": 0.5860178318268848,
+    "weight": 0.016202419006274827
+  },
+  {
+    "column": "T Min_roll7",
+    "corr_with_Wh": 0.5849867054956521,
+    "abs_corr": 0.5849867054956521,
+    "weight": 0.01617391007709267
+  },
+  {
+    "column": "TxSoil0cm",
+    "corr_with_Wh": 0.5817171640111032,
+    "abs_corr": 0.5817171640111032,
+    "weight": 0.016083512689480904
+  },
+  {
+    "column": "TxSoil10cm",
+    "corr_with_Wh": 0.5809291433297757,
+    "abs_corr": 0.5809291433297757,
+    "weight": 0.016061725227442977
+  },
+  {
+    "column": "TxSoil10cm_roll7",
+    "corr_with_Wh": 0.5793238575454528,
+    "abs_corr": 0.5793238575454528,
+    "weight": 0.016017341743716326
+  },
+  {
+    "column": "T Min",
+    "corr_with_Wh": 0.5788934951781147,
+    "abs_corr": 0.5788934951781147,
+    "weight": 0.016005442939581976
+  },
+  {
+    "column": "Temperature",
+    "corr_with_Wh": 0.5780232907372154,
+    "abs_corr": 0.5780232907372154,
+    "weight": 0.015981383233192807
+  },
+  {
+    "column": "TxSoil5cm_roll7",
+    "corr_with_Wh": 0.5737575103148094,
+    "abs_corr": 0.5737575103148094,
+    "weight": 0.015863441494837986
+  },
+  {
+    "column": "Wh_lag7",
+    "corr_with_Wh": 0.5734437497517789,
+    "abs_corr": 0.5734437497517789,
+    "weight": 0.015854766536784207
+  },
+  {
+    "column": "Wh_lag14",
+    "corr_with_Wh": 0.5729535419928607,
+    "abs_corr": 0.5729535419928607,
+    "weight": 0.015841213107044092
+  },
+  {
+    "column": "TxSoil5cm",
+    "corr_with_Wh": 0.5686129081958696,
+    "abs_corr": 0.5686129081958696,
+    "weight": 0.01572120179729879
+  },
+  {
+    "column": "TxSoil20cm",
+    "corr_with_Wh": 0.5636287284006953,
+    "abs_corr": 0.5636287284006953,
+    "weight": 0.015583397510367332
+  },
+  {
+    "column": "DHT11_temp_roll7",
+    "corr_with_Wh": 0.5610805278622795,
+    "abs_corr": 0.5610805278622795,
+    "weight": 0.015512944000946435
+  },
+  {
+    "column": "TxSoil20cm_roll7",
+    "corr_with_Wh": 0.555410082626785,
+    "abs_corr": 0.555410082626785,
+    "weight": 0.015356165615259433
+  },
+  {
+    "column": "DHT11_humidity_roll7",
+    "corr_with_Wh": 0.5552379615162057,
+    "abs_corr": 0.5552379615162057,
+    "weight": 0.015351406752641317
+  },
+  {
+    "column": "T Max_roll7",
+    "corr_with_Wh": 0.5542182094685133,
+    "abs_corr": 0.5542182094685133,
+    "weight": 0.015323212303493393
+  },
+  {
+    "column": "TxSoil30cm",
+    "corr_with_Wh": 0.5534065273956449,
+    "abs_corr": 0.5534065273956449,
+    "weight": 0.015300770643307903
+  },
+  {
+    "column": "DHT11_temp",
+    "corr_with_Wh": 0.5533322378471283,
+    "abs_corr": 0.5533322378471283,
+    "weight": 0.015298716660771056
+  },
+  {
+    "column": "Wh_lag30",
+    "corr_with_Wh": 0.5475923291953897,
+    "abs_corr": 0.5475923291953897,
+    "weight": 0.015140017727082835
+  },
+  {
+    "column": "TxSoil50cm",
+    "corr_with_Wh": 0.5436656358692423,
+    "abs_corr": 0.5436656358692423,
+    "weight": 0.015031451183329304
+  },
+  {
+    "column": "TxSoil30cm_roll7",
+    "corr_with_Wh": 0.5416066427789957,
+    "abs_corr": 0.5416066427789957,
+    "weight": 0.01497452344671897
+  },
+  {
+    "column": "Td dew point",
+    "corr_with_Wh": 0.53736471955588,
+    "abs_corr": 0.53736471955588,
+    "weight": 0.014857241320270519
+  },
+  {
+    "column": "TxSoil50cm_roll7",
+    "corr_with_Wh": 0.524561251729623,
+    "abs_corr": 0.524561251729623,
+    "weight": 0.014503246716031825
+  },
+  {
+    "column": "Wh_roll_std_30",
+    "corr_with_Wh": 0.5063609646824762,
+    "abs_corr": 0.5063609646824762,
+    "weight": 0.014000039030605177
+  },
+  {
+    "column": "T Max",
+    "corr_with_Wh": 0.5031291596805182,
+    "abs_corr": 0.5031291596805182,
+    "weight": 0.013910684994013734
+  },
+  {
+    "column": "season_spring_roll7",
+    "corr_with_Wh": 0.49779485119544215,
+    "abs_corr": 0.49779485119544215,
+    "weight": 0.013763200230769428
+  },
+  {
+    "column": "UVI Max_roll7",
+    "corr_with_Wh": 0.48171382025287274,
+    "abs_corr": 0.48171382025287274,
+    "weight": 0.01331858645413379
+  },
+  {
+    "column": "TxSoil100cm",
+    "corr_with_Wh": 0.475375642790919,
+    "abs_corr": 0.475375642790919,
+    "weight": 0.013143346382249699
+  },
+  {
+    "column": "Wh_roll_std_14",
+    "corr_with_Wh": 0.46255077309937936,
+    "abs_corr": 0.46255077309937936,
+    "weight": 0.01278876005200884
+  },
+  {
+    "column": "season_summer_roll7",
+    "corr_with_Wh": 0.4424528559052579,
+    "abs_corr": 0.4424528559052579,
+    "weight": 0.012233086047145509
+  },
+  {
+    "column": "season_summer",
+    "corr_with_Wh": 0.4412724851965073,
+    "abs_corr": 0.4412724851965073,
+    "weight": 0.012200450758990044
+  },
+  {
+    "column": "TxSoil100cm_roll7",
+    "corr_with_Wh": 0.4373608875762221,
+    "abs_corr": 0.4373608875762221,
+    "weight": 0.012092301586412425
+  },
+  {
+    "column": "UVI Max",
+    "corr_with_Wh": 0.4326912617758038,
+    "abs_corr": 0.4326912617758038,
+    "weight": 0.011963194194603162
+  },
+  {
+    "column": "DHT11_humidity",
+    "corr_with_Wh": 0.43242595085828855,
+    "abs_corr": 0.43242595085828855,
+    "weight": 0.01195585878871778
+  },
+  {
+    "column": "RHMin_roll7",
+    "corr_with_Wh": 0.4321998417654386,
+    "abs_corr": 0.4321998417654386,
+    "weight": 0.011949607248125469
+  },
+  {
+    "column": "SunshineRate_roll7",
+    "corr_with_Wh": -0.4217401087498285,
+    "abs_corr": 0.4217401087498285,
+    "weight": 0.011660413015785546
+  },
+  {
+    "column": "season_spring",
+    "corr_with_Wh": 0.4083868776454929,
+    "abs_corr": 0.4083868776454929,
+    "weight": 0.011291218370691573
+  },
+  {
+    "column": "Wh_roll_std_7",
+    "corr_with_Wh": 0.39361704443463663,
+    "abs_corr": 0.39361704443463663,
+    "weight": 0.010882857031943471
+  },
+  {
+    "column": "month_6_roll7",
+    "corr_with_Wh": 0.39074213285632753,
+    "abs_corr": 0.39074213285632753,
+    "weight": 0.010803370505309048
+  },
+  {
+    "column": "month_5",
+    "corr_with_Wh": 0.38520708589086966,
+    "abs_corr": 0.38520708589086966,
+    "weight": 0.010650335656737663
+  },
+  {
+    "column": "month_5_roll7",
+    "corr_with_Wh": 0.3842621424005468,
+    "abs_corr": 0.3842621424005468,
+    "weight": 0.010624209539858704
+  },
+  {
+    "column": "month_12_roll7",
+    "corr_with_Wh": -0.38070870145985103,
+    "abs_corr": 0.38070870145985103,
+    "weight": 0.010525962804165153
+  },
+  {
+    "column": "RH_roll7",
+    "corr_with_Wh": 0.36797479452116005,
+    "abs_corr": 0.36797479452116005,
+    "weight": 0.01017389144284772
+  },
+  {
+    "column": "month_6",
+    "corr_with_Wh": 0.35622060871721356,
+    "abs_corr": 0.35622060871721356,
+    "weight": 0.009848907742472187
+  },
+  {
+    "column": "Cloud Amount Sat_roll7",
+    "corr_with_Wh": 0.33699943550703526,
+    "abs_corr": 0.33699943550703526,
+    "weight": 0.00931747425149355
+  },
+  {
+    "column": "month_12",
+    "corr_with_Wh": -0.3261368962714234,
+    "abs_corr": 0.3261368962714234,
+    "weight": 0.009017143096690949
+  },
+  {
+    "column": "PrecpMax10_roll7",
+    "corr_with_Wh": 0.32266178389339045,
+    "abs_corr": 0.32266178389339045,
+    "weight": 0.00892106201556198
+  },
+  {
+    "column": "month_4_roll7",
+    "corr_with_Wh": 0.32173407784554725,
+    "abs_corr": 0.32173407784554725,
+    "weight": 0.00889541248531654
+  },
+  {
+    "column": "GloblRad_roll7",
+    "corr_with_Wh": 0.3176200720741095,
+    "abs_corr": 0.3176200720741095,
+    "weight": 0.008781667063790258
+  },
+  {
+    "column": "PrecpHour_roll7",
+    "corr_with_Wh": 0.30820668202750934,
+    "abs_corr": 0.30820668202750934,
+    "weight": 0.008521402475374851
+  },
+  {
+    "column": "SunshineRate",
+    "corr_with_Wh": -0.3032724613858488,
+    "abs_corr": 0.3032724613858488,
+    "weight": 0.008384979475998935
+  },
+  {
+    "column": "month_2_roll7",
+    "corr_with_Wh": -0.2671960244415567,
+    "abs_corr": 0.2671960244415567,
+    "weight": 0.007387525958581828
+  },
+  {
+    "column": "sin_DOY_k1_roll7",
+    "corr_with_Wh": 0.25894913140516285,
+    "abs_corr": 0.25894913140516285,
+    "weight": 0.007159513073617167
+  },
+  {
+    "column": "month_2",
+    "corr_with_Wh": -0.2516232425225318,
+    "abs_corr": 0.2516232425225318,
+    "weight": 0.006956964422666111
+  },
+  {
+    "column": "SunShine_roll7",
+    "corr_with_Wh": -0.24436710634854905,
+    "abs_corr": 0.24436710634854905,
+    "weight": 0.006756344318170405
+  },
+  {
+    "column": "Cloud Amount Sat",
+    "corr_with_Wh": 0.2440272925744783,
+    "abs_corr": 0.2440272925744783,
+    "weight": 0.00674694903213545
+  },
+  {
+    "column": "GloblRad",
+    "corr_with_Wh": 0.2425329736068607,
+    "abs_corr": 0.2425329736068607,
+    "weight": 0.006705633596448304
+  },
+  {
+    "column": "RHMin",
+    "corr_with_Wh": 0.22082187371339998,
+    "abs_corr": 0.22082187371339998,
+    "weight": 0.0061053577712838975
+  },
+  {
+    "column": "season_autumn_roll7",
+    "corr_with_Wh": -0.21980208703618928,
+    "abs_corr": 0.21980208703618928,
+    "weight": 0.006077162364687353
+  },
+  {
+    "column": "Precp_roll7",
+    "corr_with_Wh": 0.21052137519319425,
+    "abs_corr": 0.21052137519319425,
+    "weight": 0.005820566108071867
+  },
+  {
+    "column": "sin_DOY_k2_roll7",
+    "corr_with_Wh": -0.20833458372717864,
+    "abs_corr": 0.20833458372717864,
+    "weight": 0.005760104958790324
+  },
+  {
+    "column": "sin_DOY_k2",
+    "corr_with_Wh": -0.19188787313327588,
+    "abs_corr": 0.19188787313327588,
+    "weight": 0.005305380747606131
+  },
+  {
+    "column": "SunShine",
+    "corr_with_Wh": -0.18770775716987698,
+    "abs_corr": 0.18770775716987698,
+    "weight": 0.005189807489156523
+  },
+  {
+    "column": "month_8_roll7",
+    "corr_with_Wh": 0.18671803547639776,
+    "abs_corr": 0.18671803547639776,
+    "weight": 0.005162443329387939
+  },
+  {
+    "column": "LM35_tempC",
+    "corr_with_Wh": 0.1687189627125366,
+    "abs_corr": 0.1687189627125366,
+    "weight": 0.0046647988844478105
+  },
+  {
+    "column": "month_8",
+    "corr_with_Wh": 0.16542914488650617,
+    "abs_corr": 0.16542914488650617,
+    "weight": 0.004573840889696205
+  },
+  {
+    "column": "season_autumn",
+    "corr_with_Wh": -0.16486059362893954,
+    "abs_corr": 0.16486059362893954,
+    "weight": 0.004558121392436333
+  },
+  {
+    "column": "dayofyear_sin",
+    "corr_with_Wh": 0.16483385811146442,
+    "abs_corr": 0.16483385811146442,
+    "weight": 0.004557382199816321
+  },
+  {
+    "column": "sin_DOY_k1",
+    "corr_with_Wh": 0.16319924963830337,
+    "abs_corr": 0.16319924963830337,
+    "weight": 0.004512187992481711
+  },
+  {
+    "column": "month_7",
+    "corr_with_Wh": 0.15547947531330356,
+    "abs_corr": 0.15547947531330356,
+    "weight": 0.004298749063741948
+  },
+  {
+    "column": "month_11_roll7",
+    "corr_with_Wh": -0.14401812226818284,
+    "abs_corr": 0.14401812226818284,
+    "weight": 0.0039818617024188745
+  },
+  {
+    "column": "month_4",
+    "corr_with_Wh": 0.1271238727651675,
+    "abs_corr": 0.1271238727651675,
+    "weight": 0.0035147637842700865
+  },
+  {
+    "column": "month_10_roll7",
+    "corr_with_Wh": -0.12609830400199973,
+    "abs_corr": 0.12609830400199973,
+    "weight": 0.003486408512607466
+  },
+  {
+    "column": "day_of_year_roll7",
+    "corr_with_Wh": -0.1252140022279171,
+    "abs_corr": 0.1252140022279171,
+    "weight": 0.0034619590383875216
+  },
+  {
+    "column": "is_weekend_roll7",
+    "corr_with_Wh": -0.12152791982535358,
+    "abs_corr": 0.12152791982535358,
+    "weight": 0.0033600449867420192
+  },
+  {
+    "column": "month_7_roll7",
+    "corr_with_Wh": 0.11900663885472718,
+    "abs_corr": 0.11900663885472718,
+    "weight": 0.003290335758626408
+  },
+  {
+    "column": "month_11",
+    "corr_with_Wh": -0.1140178414789192,
+    "abs_corr": 0.1140178414789192,
+    "weight": 0.0031524038032654947
+  },
+  {
+    "column": "month_10",
+    "corr_with_Wh": -0.11151580615338484,
+    "abs_corr": 0.11151580615338484,
+    "weight": 0.00308322668524772
+  },
+  {
+    "column": "RH",
+    "corr_with_Wh": 0.10507532943279999,
+    "abs_corr": 0.10507532943279999,
+    "weight": 0.0029051582088981793
+  },
+  {
+    "column": "LM35_tempC_roll7",
+    "corr_with_Wh": 0.09174279899901695,
+    "abs_corr": 0.09174279899901695,
+    "weight": 0.0025365359029375684
+  },
+  {
+    "column": "cos_DOY_k2_roll7",
+    "corr_with_Wh": -0.07689954555091232,
+    "abs_corr": 0.07689954555091232,
+    "weight": 0.00212614461666427
+  },
+  {
+    "column": "month_9_roll7",
+    "corr_with_Wh": -0.075146989689066,
+    "abs_corr": 0.075146989689066,
+    "weight": 0.0020776893600775973
+  },
+  {
+    "column": "Precp",
+    "corr_with_Wh": -0.066478458173958,
+    "abs_corr": 0.066478458173958,
+    "weight": 0.0018380188719987146
+  },
+  {
+    "column": "dayofweek",
+    "corr_with_Wh": 0.05698514658788019,
+    "abs_corr": 0.05698514658788019,
+    "weight": 0.0015755445858575475
+  },
+  {
+    "column": "dayofyear",
+    "corr_with_Wh": -0.053825983617806425,
+    "abs_corr": 0.053825983617806425,
+    "weight": 0.001488198980706468
+  },
+  {
+    "column": "day_of_year",
+    "corr_with_Wh": -0.053825983617806425,
+    "abs_corr": 0.053825983617806425,
+    "weight": 0.001488198980706468
+  },
+  {
+    "column": "PrecpMax10",
+    "corr_with_Wh": 0.05065021641721711,
+    "abs_corr": 0.05065021641721711,
+    "weight": 0.001400394296180191
+  },
+  {
+    "column": "month",
+    "corr_with_Wh": -0.04835636238034757,
+    "abs_corr": 0.04835636238034757,
+    "weight": 0.00133697304476753
+  },
+  {
+    "column": "is_weekend",
+    "corr_with_Wh": 0.0437648997975206,
+    "abs_corr": 0.0437648997975206,
+    "weight": 0.0012100267360064482
+  },
+  {
+    "column": "is_weekend",
+    "corr_with_Wh": 0.0437648997975206,
+    "abs_corr": 0.0437648997975206,
+    "weight": 0.0012100267360064482
+  },
+  {
+    "column": "is_weekend",
+    "corr_with_Wh": 0.0437648997975206,
+    "abs_corr": 0.0437648997975206,
+    "weight": 0.0012100267360064482
+  },
+  {
+    "column": "is_weekend",
+    "corr_with_Wh": 0.0437648997975206,
+    "abs_corr": 0.0437648997975206,
+    "weight": 0.0012100267360064482
+  },
+  {
+    "column": "PrecpHour",
+    "corr_with_Wh": -0.04052730371885313,
+    "abs_corr": 0.04052730371885313,
+    "weight": 0.0011205125857695678
+  },
+  {
+    "column": "month_9",
+    "corr_with_Wh": -0.0267590823378254,
+    "abs_corr": 0.0267590823378254,
+    "weight": 0.0007398441492970363
+  },
+  {
+    "column": "cos_DOY_k2",
+    "corr_with_Wh": -0.023748222430325313,
+    "abs_corr": 0.023748222430325313,
+    "weight": 0.0006565988773256515
+  },
+  {
+    "column": "sin_DOY_k3",
+    "corr_with_Wh": 0.022800398544914512,
+    "abs_corr": 0.022800398544914512,
+    "weight": 0.0006303931223101321
+  },
+  {
+    "column": "cos_DOY_k3",
+    "corr_with_Wh": -0.021205117440770478,
+    "abs_corr": 0.021205117440770478,
+    "weight": 0.000586286251361246
+  },
+  {
+    "column": "sin_DOY_k3_roll7",
+    "corr_with_Wh": 0.012727687198659023,
+    "abs_corr": 0.012727687198659023,
+    "weight": 0.00035189939584362836
+  },
+  {
+    "column": "EvapA",
+    "corr_with_Wh": 0.008801524950722646,
+    "abs_corr": 0.008801524950722646,
+    "weight": 0.00024334753551990526
+  },
+  {
+    "column": "EvapA_roll7",
+    "corr_with_Wh": 0.0016944997833070734,
+    "abs_corr": 0.0016944997833070734,
+    "weight": 4.6850102512398574e-05
+  },
+  {
+    "column": "cos_DOY_k3_roll7",
+    "corr_with_Wh": 0.00036361083107487824,
+    "abs_corr": 0.00036361083107487824,
+    "weight": 1.0053235107076674e-05
+  },
+  {
+    "column": "WGustTime",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "Cloud Amount",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "month_3",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "RHMinTime",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "T Max Time",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "T Min Time",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "UVI Max Time",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "PrecpMax10Time",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "PrecpMax60Time",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "WGustTime_roll7",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "UVI Max Time_roll7",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "Cloud Amount_roll7",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "PrecpMax60Time_roll7",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "PrecpMax10Time_roll7",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "T Max Time_roll7",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "T Min Time_roll7",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "RHMinTime_roll7",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  },
+  {
+    "column": "month_3_roll7",
+    "corr_with_Wh": 0.0,
+    "abs_corr": 0.0,
+    "weight": 0.0
+  }
+]

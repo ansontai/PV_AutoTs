@@ -1,0 +1,30 @@
+{
+  "default_max_generations": 15,
+  "horizons": [
+    150,
+    120,
+    90,
+    60,
+    30
+  ],
+  "InfiniteLoop": true,
+  "default_model_list": "default",
+  "default_ensemble": [
+    "auto",
+    "simple",
+    "horizontal",
+    "weighted",
+    "horizontal-max",
+    "horizontal-mean"
+  ],
+  "default_n_jobs": -1,
+  "default_transformer_list": "fast",
+  "default_num_validations": 3,
+  "ENABLE_FUTURE_REGRESSOR": false,
+  "ENABLE_FIT_FUTURE_REGRESSOR": false,
+  "ENABLE_PREDICT_FUTURE_REGRESSOR": false,
+  "random_seed": null,
+  "raw_argv": [
+    "t:/OneDrive/1TB/School/python_local/Power_day_v3/6v3-autoTs_WeatherToDayWh.py"
+  ]
+}

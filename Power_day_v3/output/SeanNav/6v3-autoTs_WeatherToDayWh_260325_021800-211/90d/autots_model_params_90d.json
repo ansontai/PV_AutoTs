@@ -1,0 +1,30 @@
+{
+  "init_params": {
+    "model_list": [
+      "SeasonalNaive"
+    ],
+    "transformer_list": [
+      "default"
+    ],
+    "forecast_length": 90,
+    "n_jobs": 4,
+    "max_generations": 15,
+    "num_validations": 1,
+    "ensemble": [
+      "simple"
+    ]
+  },
+  "fit_params": {
+    "used_future_regressor_for_fit": false,
+    "train_shape": [
+      233,
+      1
+    ],
+    "future_regressor_shape_fit": null
+  },
+  "predict_params": {
+    "used_future_regressor_for_predict": false,
+    "future_regressor_shape_predict": null
+  },
+  "best_model_id": "8089c49d56fb1efdb8e5b37859bb1232"
+}

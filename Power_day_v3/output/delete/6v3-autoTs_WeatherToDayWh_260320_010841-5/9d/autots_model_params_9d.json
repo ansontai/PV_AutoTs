@@ -1,0 +1,39 @@
+{
+  "init_params": {
+    "model_list": [
+      "ARIMA",
+      "RollingRegression",
+      "WindowRegression",
+      "DatepartRegression"
+    ],
+    "transformer_list": "all",
+    "forecast_length": 9,
+    "n_jobs": 4,
+    "max_generations": 1,
+    "num_validations": 3,
+    "ensemble": [
+      "auto",
+      "simple",
+      "weighted"
+    ]
+  },
+  "fit_params": {
+    "used_future_regressor_for_fit": true,
+    "train_shape": [
+      314,
+      1
+    ],
+    "future_regressor_shape_fit": [
+      314,
+      53
+    ]
+  },
+  "predict_params": {
+    "used_future_regressor_for_predict": true,
+    "future_regressor_shape_predict": [
+      9,
+      15
+    ]
+  },
+  "best_model_id": "8305ee081acb8d78ea267c5313119a13"
+}

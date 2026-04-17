@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "t:\OneDrive\1TB\School\python_local\Power_day_v3\6v3-autoTs_WeatherToDayWh.py", line 1364, in main
+    prediction = model.predict(verbose=3)
+  File "T:\OneDrive\1TB\School\python_local\.venv\Lib\site-packages\autots\evaluator\auto_ts.py", line 2526, in predict
+    df_forecast = self._predict(
+        forecast_length=forecast_length,
+    ...<3 lines>...
+        verbose=verbose,
+    )
+  File "T:\OneDrive\1TB\School\python_local\.venv\Lib\site-packages\autots\evaluator\auto_ts.py", line 2398, in _predict
+    df_forecast = model_forecast(
+        model_name=use_model,
+    ...<20 lines>...
+        force_gc=self.force_gc,
+    )
+  File "T:\OneDrive\1TB\School\python_local\.venv\Lib\site-packages\autots\evaluator\auto_model.py", line 1472, in model_forecast
+    ens_forecast = EnsembleForecast(
+        model_name,
+    ...<8 lines>...
+        prematched_series=all_series,
+    )
+  File "T:\OneDrive\1TB\School\python_local\.venv\Lib\site-packages\autots\models\ensemble.py", line 1008, in EnsembleForecast
+    ens_forecast = BestNEnsemble(
+        ensemble_params,
+    ...<4 lines>...
+        prediction_interval,
+    )
+  File "T:\OneDrive\1TB\School\python_local\.venv\Lib\site-packages\autots\models\ensemble.py", line 246, in BestNEnsemble
+    raise ValueError("BestN failed, no component models available.")
+ValueError: BestN failed, no component models available.

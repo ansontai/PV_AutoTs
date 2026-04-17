@@ -1,0 +1,54 @@
+{
+  "default_max_generations": 1,
+  "horizons": [
+    3,
+    2
+  ],
+  "InfiniteLoop": false,
+  "default_model_list": [
+    "ARIMA"
+  ],
+  "default_ensemble": [
+    "simple"
+  ],
+  "default_n_jobs": -1,
+  "default_transformer_list": [
+    "superFast"
+  ],
+  "default_num_validations": 3,
+  "ENABLE_FUTURE_REGRESSOR": false,
+  "ENABLE_FIT_FUTURE_REGRESSOR": false,
+  "ENABLE_PREDICT_FUTURE_REGRESSOR": false,
+  "random_seed": null,
+  "ENABLE_TMY": false,
+  "TMY_PATH": "t:\\OneDrive\\1TB\\School\\PV_autoTs\\Power_day_v4c-autoTs_vs_PVGIS_AddPvgisPredit\\input\\tmy_24.148_120.703_2005_2023[UTC+8][daily].csv",
+  "TMY_USE_COLUMNS": null,
+  "ENABLE_PVGIS_AS_FUTURE_REGRESSOR": false,
+  "raw_argv": [
+    "t:\\OneDrive\\1TB\\School\\PV_autoTs\\Power_day_v4c-autoTs_vs_PVGIS_AddPvgisPredit\\6v4c-autoTs_WeatherToDayWh.py",
+    "--default_max_generations",
+    "1",
+    "--horizons",
+    "[3, 2]",
+    "--InfiniteLoop",
+    "False",
+    "--default_model_list",
+    "[\"ARIMA\"]",
+    "--default_ensemble",
+    "[\"simple\"]",
+    "--default_n_jobs",
+    "-1",
+    "--default_transformer_list",
+    "superFast",
+    "--default_num_validations",
+    "3",
+    "--enable_future_regressor",
+    "False",
+    "--enable_fit_future_regressor",
+    "False",
+    "--enable_predict_future_regressor",
+    "False",
+    "--enable_pvgis_fr",
+    "False"
+  ]
+}

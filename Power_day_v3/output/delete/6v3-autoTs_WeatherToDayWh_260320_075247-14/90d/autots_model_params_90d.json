@@ -1,0 +1,67 @@
+{
+  "init_params": {
+    "model_list": {
+      "ConstantNaive": 1,
+      "LastValueNaive": 1,
+      "AverageValueNaive": 1,
+      "GLS": 1,
+      "SeasonalNaive": 1,
+      "GLM": 1,
+      "ETS": 1,
+      "FBProphet": 0.5,
+      "UnobservedComponents": 0.6,
+      "VAR": 1,
+      "VECM": 1,
+      "WindowRegression": 0.8,
+      "DatepartRegression": 1,
+      "MultivariateRegression": 0.4,
+      "UnivariateMotif": 1,
+      "MultivariateMotif": 1,
+      "SectionalMotif": 1,
+      "NVAR": 0.4,
+      "Theta": 1,
+      "ARDL": 1,
+      "ARCH": 1,
+      "MetricMotif": 1,
+      "SeasonalityMotif": 1,
+      "DMD": 0.3,
+      "RRVAR": 0.8,
+      "FFT": 0.8,
+      "Cassandra": 0.8,
+      "BasicLinearModel": 0.8,
+      "TVVAR": 0.4,
+      "BallTreeMultivariateMotif": 0.4
+    },
+    "transformer_list": [
+      "default"
+    ],
+    "forecast_length": 90,
+    "n_jobs": 4,
+    "max_generations": 10,
+    "num_validations": 1,
+    "ensemble": [
+      "auto",
+      "simple",
+      "weighted"
+    ]
+  },
+  "fit_params": {
+    "used_future_regressor_for_fit": true,
+    "train_shape": [
+      233,
+      1
+    ],
+    "future_regressor_shape_fit": [
+      233,
+      53
+    ]
+  },
+  "predict_params": {
+    "used_future_regressor_for_predict": true,
+    "future_regressor_shape_predict": [
+      90,
+      15
+    ]
+  },
+  "best_model_id": "67fc3c830548cdc97689fefb575890e4"
+}
