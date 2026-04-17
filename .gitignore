@@ -1,2 +1,3 @@
-# Ignore output directories and generated results
+# Ignore output-like directories anywhere in the repo
 output/
+**/*output*/

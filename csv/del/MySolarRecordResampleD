@@ -1,0 +1,18 @@
+import pandas as pd
+
+df = pd.read_csv("SolarRecord(260204).csv")
+
+# 假設時間欄位叫 LocalTime
+df['LocalTime'] = pd.to_datetime(df['LocalTime'])
+df = df.set_index('LocalTime')
+
+# 每分鐘功率轉成能量 (Wh)
+df['Wh'] = df['W'] * (1/60)
+
+# 每日總發電量 (Wh)
+daily_energy = df['Wh'].resample('D').sum()
+
+# 如果想轉成 kWh
+daily_energy_kwh = daily_energy / 1000
+
+print(daily_energy_kwh)

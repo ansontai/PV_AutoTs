@@ -1,0 +1,2 @@
+autots>=0.6.6
+pandas
