@@ -83,6 +83,7 @@ default_model_list = [
     'ElasticNet',
     'Ridge',
     'Lasso', # 類回歸模型
+    # DL 模型（最不穩定，僅建議在資料量較大且有足夠時間調參的情況下使用）：
 ]
 
 ## ensemble settings
@@ -679,42 +680,9 @@ def predict_autots_model(model, test_df, pred_fr, out_dir, train_value_df, ats_k
         msg = str(e)
         print('AutoTS.predict ValueError:', msg)
         if 'bestn failed' in msg.lower():
-            print('Detected BestN failure: retrying predict without future_regressor + ARIMA-only fallback')
-            try:
-                try:
-                    mres = model.results()
-                    if hasattr(mres, 'to_csv'):
-                        save_path = os.path.join(out_dir, 'model_results_on_bestn_fail.csv')
-                        mres.to_csv(save_path, index=False)
-                        print('Saved model.results() to', save_path)
-                except Exception as e_save:
-                    print('Failed to call/save model.results():', e_save)
-
-                prediction = model.predict(verbose=3)
-            except Exception as e_no_fr:
-                print('Fallback no future_regressor also failed:', e_no_fr)
-                try:
-                    # Before attempting ARIMA-only fallback, ensure it does not override user's model_list
-                    original_list = ats_kwargs.get('model_list', globals().get('default_model_list'))
-                    attempted_list = ['ARIMA']
-                    allow_arima = True
-                    if FORBID_MODEL_OVERRIDE:
-                        allow_arima = handle_model_override(original_list, attempted_list, out_root=out_dir, horizon=getattr(model, 'forecast_length', None), action=ON_OVERRIDE_ACTION)
-                    if not allow_arima:
-                        print('ARIMA-only fallback blocked by FORBID_MODEL_OVERRIDE; re-raising original error.')
-                        raise e
-
-                    arima_kwargs = dict(ats_kwargs)
-                    arima_kwargs['model_list'] = ['ARIMA']
-                    arima_kwargs['ensemble'] = ['simple']
-                    fallback_model = AutoTS(**arima_kwargs)
-                    fallback_model.forecast_length = model.forecast_length
-                    fallback_model.fit(train_value_df[['Wh']])
-                    prediction = fallback_model.predict(verbose=3)
-                    model = fallback_model
-                except Exception as e_arima:
-                    print('ARIMA-only fallback failed:', e_arima)
-                    raise
+            # Detected BestN failure: do not attempt Prophet/ARIMA fallback here.
+            # Propagate error to caller so the outer loop will log and skip the horizon.
+            raise
         elif 'invalid error value specified' in msg.lower() and pred_fr is not None:
             print('Detected pandas.to_numeric issue during predict; coercing pred_fr and retry')
             p_conv = pred_fr.copy()
@@ -1487,8 +1455,16 @@ def main():
                 print('Skipping horizon during fit:', e)
                 continue
             except Exception as e:
-                print('AutoTS fit failed:', e)
-                raise
+                err_msg = f'AutoTS fit/predict failed for horizon {horizon}: {e}'
+                print(err_msg)
+                try:
+                    os.makedirs(out_dir, exist_ok=True)
+                    with open(os.path.join(out_dir, 'autots_fail.log'), 'a', encoding='utf-8') as lf:
+                        lf.write(datetime.now().isoformat() + ' - ' + err_msg + "\n")
+                except Exception:
+                    pass
+                print('Skipping this horizon due to AutoTS failure.')
+                continue
 
 
             # Optionally load future regressor CSV for prediction and pass to AutoTS.predict
@@ -1587,8 +1563,16 @@ def main():
                 # Delegate prediction and its fallbacks to the helper function
                 prediction, model, pred_fr = predict_autots_model(model, test_df, pred_fr, out_dir, train_value_df, ats_kwargs)
             except Exception as e:
-                print('AutoTS.predict (legacy wrapper) failed:', e)
-                raise
+                err_msg = f'AutoTS fit/predict failed for horizon {horizon}: {e}'
+                print(err_msg)
+                try:
+                    os.makedirs(out_dir, exist_ok=True)
+                    with open(os.path.join(out_dir, 'autots_fail.log'), 'a', encoding='utf-8') as lf:
+                        lf.write(datetime.now().isoformat() + ' - ' + err_msg + "\n")
+                except Exception:
+                    pass
+                print('Skipping this horizon due to AutoTS failure.')
+                continue
             forecast = prediction.forecast
             try:
                 forecast.index = test_df.index

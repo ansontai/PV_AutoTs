@@ -172,7 +172,7 @@ def plot_forecast_comparison(plot_path, index, y_true, y_pred, y_naive, title=No
 INPUT_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), 'input'))
 
 # 主要輸入（每日 Wh 時序）
-DEFAULT_INPUT = os.path.join(INPUT_DIR, 'SolarRecord(260310)_d_forWh_WithCodis.csv')
+DEFAULT_INPUT = os.path.join(INPUT_DIR, 'SolarRecord(260228)_d_forWh_WithCodis.csv')
 
 # DEFAULT_OUTPUT_PARENT: 此腳本產生的 runs 輸出父資料夾（每次 run 會建立子資料夾）
 DEFAULT_OUTPUT_PARENT = os.path.normpath(os.path.join(os.path.dirname(__file__), 'output'))

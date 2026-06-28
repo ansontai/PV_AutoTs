@@ -101,8 +101,8 @@ def compute_forecast_scores(y_true, y_pred, train_series):
 
 
 def find_input_file(base: str):
-    # 直接固定為 \input\SolarRecord(260310)_d_forWh_WithCodis.csv
-    candidate = os.path.normpath(os.path.join(base, 'input', 'SolarRecord(260310)_d_forWh_WithCodis.csv'))
+    # 直接固定為 \input\SolarRecord(260228)_d_forWh_WithCodis.csv
+    candidate = os.path.normpath(os.path.join(base, 'input', 'SolarRecord(260228)_d_forWh_WithCodis.csv'))
     if os.path.exists(candidate):
         return candidate
 

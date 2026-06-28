@@ -12,7 +12,7 @@ from pathlib import Path
 DEFAULT_FILE_WH = 'SolarRecord_260310_1829-daily-1d.csv'
 DEFAULT_FILE_EXT = '2000--202602-d-forWh_4b.csv'
 DEFAULT_OUTPUT_SUBDIR = 'csv/output'  # 相對於 base_dir.parent
-DEFAULT_OUTPUT_NAME = 'SolarRecord(260310)_d_forWh_WithCodis.csv'
+DEFAULT_OUTPUT_NAME = 'SolarRecord(260228)_d_forWh_WithCodis.csv'
 
 
 # 來源檔案（以本程式所在目錄為基準）

@@ -41,8 +41,8 @@ InfiniteLoop = True
 
 ### 預設要測試的 horizon（可自行修改為 [30,60,90] 等）.
 # horizons = [180, 150, 120, 90, 60, 30]
-horizons = [120, 90, 60, 30]
-# horizons = [90, 60, 30]
+# horizons = [120, 90, 60, 30]
+horizons = [90, 60, 30]
 # horizons = [9, 6, 3] # for fast testing
 
 ### 預設的 AutoTS max_generations（增加 generations 數量可以尋找更優模型，但也可能會增加過擬合風險，尤其是資料量較小時）
@@ -57,61 +57,63 @@ default_max_generations = 30
 # default_model_list = ['ARIMA']
 
 ## default
-# default_model_list = "default"
+default_model_list = "default"
 
 ##
 ## version_2
 ##
-default_model_list = [
-    # 'Theta',
-    'ARIMA', # 時間序列模型
-    'RollingRegression',
-    'WindowRegression',
-    'DatepartRegression',
-    # add 
-    # X 'SeasonalNaive',
-    # 機器學習（Random Forest、SVR）
-    'RandomForest',
-    'SVR',
-    # 深度學習（LSTM）
-    'LSTM',
-    # 機器學習（ML）模型（最穩定使用 exogenous）這一類對外生變數支援最好、效果最明顯：
-    'RandomForest',
-    'ExtraTrees',
-    'XGBoost', #（若環境已安裝）
-    'LightGBM', #（若環境已安裝）
-    'MLP', # / NeuralNet Regressor
-    'ElasticNet',
-    'Ridge',
-    'Lasso', # 類回歸模型
-]
+# default_model_list = [
+#     # 'Theta',
+#     'ARIMA', # 時間序列模型
+#     'RollingRegression',
+#     'WindowRegression',
+#     'DatepartRegression',
+#     # add 
+#     # X 'SeasonalNaive',
+#     # 機器學習（Random Forest、SVR）
+#     'RandomForest',
+#     'SVR',
+#     # 深度學習（LSTM）
+#     'LSTM',
+#     # 機器學習（ML）模型（最穩定使用 exogenous）這一類對外生變數支援最好、效果最明顯：
+#     'RandomForest',
+#     'ExtraTrees',
+#     'XGBoost', #（若環境已安裝）
+#     'LightGBM', #（若環境已安裝）
+#     'MLP', # / NeuralNet Regressor
+#     'ElasticNet',
+#     'Ridge',
+#     'Lasso', # 類回歸模型
+# ]
 
 ## ensemble settings
 ## default_ensemble = 'simple' # 'simple' or 'horizontal-max' or 'horizontal-mean' or None
 # default_ensemble = ['simple'] # 預設 ensemble 方法（AutoTS 內建的簡單平均）
-default_ensemble = ['auto','simple','horizontal','weighted', 'horizontal-max', 'horizontal-mean']
+# default_ensemble = ['auto','simple','horizontal','weighted', 'horizontal-max', 'horizontal-mean']
+# default_ensemble = ['auto','simple','horizontal','weighted']
+default_ensemble = ['default'] # 使用 AutoTS 預設的 ensemble 設定（通常是 'auto'，但具體行為可能因版本而異）
 
 ## Memory optimization toggles
 memory_opt_enabled = True
 ## Reduce AutoTS worker count to save memory (set to -1 to use all cores)
 ## Use 4 CPUs by default for `n_jobs` to limit parallelism and memory
 # default_n_jobs = 1
-# default_n_jobs = 1
 default_n_jobs = -1
 
 ## Default transformer list and validation folds (top-level constants for easy tuning)
+default_ensemble = ['default'] # 使用 AutoTS 預設的 ensemble 設定（通常是 'auto'，但具體行為可能因版本而異）
 # default_transformer_list = []
 #     "DifferencedTransformer",
 #     "Scaler",
 # ]
-default_transformer_list = [
-                  "DifferencedTransformer", # 避免被「抹平」成水平線
-                  "Scaler", # 避免被「抹平」成水平線
-                  ##
-                  'MinMaxScaler',       # LSTM 必備
-                  'Detrend',            # 去趨勢
-                  'DatepartRegression', # 加入時間特徵（小時、星期、季節
-                  ],
+# default_transformer_list = [
+#                   "DifferencedTransformer", # 避免被「抹平」成水平線
+#                   "Scaler", # 避免被「抹平」成水平線
+#                   ##
+#                   'MinMaxScaler',       # LSTM 必備
+#                   'Detrend',            # 去趨勢
+#                   'DatepartRegression', # 加入時間特徵（小時、星期、季節
+#                   ],
 
 ## Use a minimal transformer list by default to avoid unstable internal
 ## transformers (e.g. ScipyFilter) that can produce all-NA validation
@@ -926,48 +928,9 @@ def predict_autots_model(model, test_df, pred_fr, out_dir, train_value_df, ats_k
         msg = str(e)
         print('AutoTS.predict ValueError:', msg)
         if 'bestn failed' in msg.lower():
-            print('Detected BestN failure: retrying predict without future_regressor + ARIMA-only fallback')
-            try:
-                try:
-                    mres = model.results()
-                    if hasattr(mres, 'to_csv'):
-                        save_path = os.path.join(out_dir, 'model_results_on_bestn_fail.csv')
-                        mres.to_csv(save_path, index=False)
-                        print('Saved model.results() to', save_path)
-                except Exception as e_save:
-                    print('Failed to call/save model.results():', e_save)
-
-                prediction = model.predict(verbose=3)
-            except Exception as e_no_fr:
-                print('Fallback no future_regressor also failed:', e_no_fr)
-                try:
-                    # Before attempting ARIMA-only fallback, respect override policy
-                    if FORBID_MODEL_OVERRIDE:
-                        allow = handle_model_override(default_model_list, ['ARIMA'], out_root=out_dir if 'out_dir' in locals() else None, horizon=horizon, action=ON_OVERRIDE_ACTION)
-                        if not allow:
-                            print('ARIMA-only fallback blocked by FORBID_MODEL_OVERRIDE; re-raising original error.')
-                            raise e_no_fr
-                    arima_kwargs = dict(ats_kwargs)
-                    arima_kwargs['model_list'] = ['ARIMA']
-                    arima_kwargs['ensemble'] = ['simple']
-                    fallback_model = AutoTS(**arima_kwargs)
-                    fallback_model.forecast_length = model.forecast_length
-                    fallback_model.fit(train_value_df[['Wh']])
-                    prediction = fallback_model.predict(verbose=3)
-                    model = fallback_model
-                except Exception as e_arima:
-                        print('ARIMA-only fallback failed:', e_arima)
-                        print('Final fallback: 使用 naive lag-1 baseline 作為保險回退，避免整個 run 崩潰')
-                        try:
-                            # compute naive lag-1 forecast using training values available in train_value_df
-                            y_true, y_naive = compute_naive_baseline(train_value_df, test_df)
-                            forecast_df = pd.DataFrame({'Wh': y_naive}, index=test_df.index)
-                            from types import SimpleNamespace
-                            prediction = SimpleNamespace(forecast=forecast_df)
-                            return prediction, model, pred_fr
-                        except Exception as e_final:
-                            print('Naive fallback also failed:', e_final)
-                            raise
+            # Detected BestN failure: do not attempt Prophet/ARIMA/naive fallbacks here.
+            # Propagate error to caller so outer logic will log and skip the horizon.
+            raise
         elif 'invalid error value specified' in msg.lower() and pred_fr is not None:
             print('Detected pandas.to_numeric issue during predict; coercing pred_fr and retry')
             p_conv = pred_fr.copy()
@@ -1935,8 +1898,16 @@ def main():
                 # Delegate prediction and its fallbacks to the helper function
                 prediction, model, pred_fr = predict_autots_model(model, test_df, pred_fr, out_dir, train_value_df, ats_kwargs)
             except Exception as e:
-                print('AutoTS.predict (legacy wrapper) failed:', e)
-                raise
+                err_msg = f'AutoTS fit/predict failed for horizon {horizon}: {e}'
+                print(err_msg)
+                try:
+                    os.makedirs(out_dir, exist_ok=True)
+                    with open(os.path.join(out_dir, 'autots_fail.log'), 'a', encoding='utf-8') as lf:
+                        lf.write(datetime.now().isoformat() + ' - ' + err_msg + "\n")
+                except Exception:
+                    pass
+                print('Skipping this horizon due to AutoTS failure.')
+                continue
             forecast = prediction.forecast
             try:
                 forecast.index = test_df.index

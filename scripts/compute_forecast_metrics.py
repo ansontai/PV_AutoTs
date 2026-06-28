@@ -2,7 +2,7 @@
 """Compute forecast metrics for AutoTS forecast CSVs and write JSON outputs.
 
 Usage example:
-  python scripts/compute_forecast_metrics.py --truth ../csv/SolarRecord(260310)_d_forWh_WithCodis.csv --forecast-dir . --horizons 90,60,30
+    python scripts/compute_forecast_metrics.py --truth ../csv/SolarRecord(260228)_d_forWh_WithCodis.csv --forecast-dir . --horizons 90,60,30
 """
 from __future__ import annotations
 

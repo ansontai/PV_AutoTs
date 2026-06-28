@@ -1,2 +1,0 @@
-forecast_file,wh_column,forecast_start,forecast_end,days_counted,total_wh,generated_at
-forecast_Wh_20260301_20270228_autots_template90d_futureReg_filled.csv,Wh_pred,2026-03-01 00:00:00,2027-02-28 00:00:00,365,1999.3178932936194,2026-03-10T18:08:46.318191

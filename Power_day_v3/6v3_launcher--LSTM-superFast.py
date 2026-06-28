@@ -15,6 +15,39 @@ import subprocess
 import sys
 import json
 
+
+import time
+import json
+
+def find_latest_effective_settings(output_root: Path):
+    try:
+        candidates = list(Path(output_root).rglob('effective_settings.json'))
+    except Exception:
+        return None
+    if not candidates:
+        return None
+    latest = max(candidates, key=lambda p: p.stat().st_mtime)
+    return latest
+
+
+def check_effective_settings_file(path: Path, expected_seed=None, expected_forbid=True, expected_on_override='fail'):
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            j = json.load(f)
+    except Exception as e:
+        return False, f'cannot_read_json:{e}'
+    if expected_seed is not None:
+        try:
+            if int(j.get('random_seed')) != int(expected_seed):
+                return False, f'seed_mismatch({j.get("random_seed")})'
+        except Exception:
+            return False, 'seed_mismatch'
+    if expected_forbid and j.get('FORBID_MODEL_OVERRIDE') is not True:
+        return False, f'FORBID_MODEL_OVERRIDE={j.get("FORBID_MODEL_OVERRIDE")}'
+    if j.get('ON_OVERRIDE_ACTION') != expected_on_override:
+        return False, f'ON_OVERRIDE_ACTION={j.get("ON_OVERRIDE_ACTION")}'
+    return True, 'ok'
+
 # --- 在此區編輯參數 (設為 None 表示不覆寫) ---
 # 範例：default_max_generations = 5
 default_max_generations = 1

@@ -12,6 +12,21 @@ import platform
 import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_absolute_error, r2_score
+import re
+import traceback
+import logging
+from datetime import datetime
+import time
+import tempfile
+try:
+    DEBUG_DIR = os.path.join(os.path.dirname(__file__), '.debug')
+    os.makedirs(DEBUG_DIR, exist_ok=True)
+except Exception:
+    DEBUG_DIR = os.path.join(tempfile.gettempdir(), '.debug')
+    try:
+        os.makedirs(DEBUG_DIR, exist_ok=True)
+    except Exception:
+        pass
 
 
 def plot_forecast_comparison(plot_path, index, y_true, y_pred, y_naive, title=None, figsize=(12, 6), dpi=150):
@@ -102,8 +117,8 @@ def compute_forecast_scores(y_true, y_pred, train_series):
 
 
 def find_input_file(base: str):
-    # 直接固定為 \input\SolarRecord(260310)_d_forWh_WithCodis.csv
-    candidate = os.path.normpath(os.path.join(base, 'input', 'SolarRecord(260310)_d_forWh_WithCodis.csv'))
+    # 直接固定為 \input\SolarRecord(260228)_d_forWh_WithCodis.csv
+    candidate = os.path.normpath(os.path.join(base, 'input', 'SolarRecord(260228)_d_forWh_WithCodis.csv'))
     if os.path.exists(candidate):
         return candidate
 
@@ -163,7 +178,7 @@ def load_series(path: str):
     return ser
 
 
-def get_output_parent(base: str, timestamp: str | None = None, start_count: int = 1):
+def get_output_parent(base: str, timestamp: str | None = None, start_count: int = 1, name_hint: str | None = None, user_tag: str | None = None):
     """Create a unique output parent directory.
 
     If `timestamp` is provided it will be used; otherwise current time is used.
@@ -171,13 +186,24 @@ def get_output_parent(base: str, timestamp: str | None = None, start_count: int 
     still increment until an unused name is found).
     Returns (output_parent, timestamp, count_used).
     """
-    script_name = os.path.splitext(os.path.basename(__file__))[0]
+    script_name = name_hint or os.path.splitext(os.path.basename(__file__))[0]
     if timestamp is None:
         timestamp = pd.Timestamp.now().strftime('%y%m%d_%H%M%S')
     count = int(start_count) if start_count is not None else 1
+    # create nested folder structure under base: {base}/{script_name}/{user_tag?}/{timestamp}
     while True:
-        output_parent = os.path.join(base, 'output', f'{script_name}_{timestamp}_{count}')
-        if not os.path.exists(output_parent):
+        if count == 1:
+            if user_tag:
+                candidate = os.path.join(base, script_name, user_tag, timestamp)
+            else:
+                candidate = os.path.join(base, script_name, timestamp)
+        else:
+            if user_tag:
+                candidate = os.path.join(base, script_name, user_tag, f'{timestamp}_{count}')
+            else:
+                candidate = os.path.join(base, script_name, f'{timestamp}_{count}')
+        if not os.path.exists(candidate):
+            output_parent = candidate
             break
         count += 1
     os.makedirs(output_parent, exist_ok=True)
@@ -222,6 +248,36 @@ def _parse_bool(s):
     return None
 
 
+def _normalize_model_names(model_list):
+    if model_list is None:
+        return []
+    if isinstance(model_list, str):
+        return [model_list]
+    names = []
+    try:
+        for m in model_list:
+            if isinstance(m, dict):
+                name = m.get('model') or m.get('Model')
+                if name:
+                    names.append(str(name))
+            else:
+                names.append(str(m))
+    except Exception:
+        return [str(model_list)]
+    return names
+
+
+def validate_model_data_compatibility(model_list, series_columns, horizon=None):
+    model_names = _normalize_model_names(model_list)
+    upper_names = set([m.upper() for m in model_names])
+    if 'VAR' in upper_names and int(series_columns) < 2:
+        hz = f', horizon={horizon}' if horizon is not None else ''
+        raise ValueError(
+            f"Invalid model/data combination{hz}: model_list={model_names} includes VAR, "
+            f"but series_columns={series_columns}. VAR requires at least 2 variables."
+        )
+
+
 def handle_model_override(original, attempted, out_root=None, horizon=None, action='warn_and_skip'):
     try:
         if isinstance(original, str):
@@ -248,14 +304,13 @@ def handle_model_override(original, attempted, out_root=None, horizon=None, acti
         return True
     msg = f"Model override detected: original={orig_list}, attempted={att_list}, horizon={horizon}"
     print(msg)
-    if out_root:
-        try:
-            os.makedirs(out_root, exist_ok=True)
-            logp = os.path.join(out_root, 'model_override.log')
-            with open(logp, 'a', encoding='utf-8') as lf:
-                lf.write(datetime.now().isoformat() + ' - ' + msg + '\n')
-        except Exception:
-            pass
+    try:
+        os.makedirs(DEBUG_DIR, exist_ok=True)
+        logp = os.path.join(DEBUG_DIR, 'model_override.log')
+        with open(logp, 'a', encoding='utf-8') as lf:
+            lf.write(datetime.now().isoformat() + ' - ' + msg + '\n')
+    except Exception:
+        pass
     if action == 'fail':
         raise RuntimeError(msg)
     return False
@@ -273,6 +328,10 @@ def save_effective_settings(output_dir, inp, horizons, timestamp, ats_kwargs_tem
         'ALLOW_TRANSFORMER_RETRY': ALLOW_TRANSFORMER_RETRY,
         'ON_OVERRIDE_ACTION': ON_OVERRIDE_ACTION,
     }
+    try:
+        settings['random_seed'] = globals().get('random_seed')
+    except Exception:
+        settings['random_seed'] = None
     ef_path = os.path.join(output_dir, 'effective_settings.json')
     with open(ef_path, 'w', encoding='utf-8') as ef:
         json.dump(settings, ef, ensure_ascii=False, indent=2)
@@ -294,204 +353,317 @@ def fallback_prophet_predict(dfp_train_local, horizon_local, ProphetClass):
     return fc_tail
 
 
-def run_horizon(AutoTS, ser, horizon, output_dir, timestamp, count, n_jobs, max_generations, transformer_list, model_list, ensemble):
+def run_horizon(AutoTS, ser, horizon, output_dir, timestamp, count, n_jobs, max_generations, transformer_list, model_list, ensemble, metric_weighting=None):
     # `output_dir`, `timestamp`, `count` are determined by caller (before horizons loop)
+    start_perf = time.perf_counter()
+    start_iso = datetime.now().isoformat()
 
-    if len(ser) <= horizon:
-        print(f'資料筆數太少無法切出測試集 (len({len(ser)}) <= horizon {horizon})，跳過')
-        return
+    def _run():
+        # use a local copy to avoid assigning to outer-scope name
+        local_model_list = model_list
+        validate_model_data_compatibility(local_model_list, ser.shape[1], horizon=horizon)
 
-    train_ser = ser.iloc[:-horizon].copy()
-    test_ser = ser.iloc[-horizon:].copy()
-
-    dfp_train = train_ser.reset_index()
-    dfp_train.columns = ['ds', 'y']
-    dfp_train['ds'] = pd.to_datetime(dfp_train['ds'], errors='coerce')
-    dfp_train = dfp_train.dropna(subset=['ds'])
-
-    ats_kwargs = dict(
-        model_list=model_list,
-        forecast_length=horizon,
-        frequency='D',
-        transformer_list=transformer_list,
-        n_jobs=n_jobs,
-        max_generations=max_generations,
-        num_validations=3,
-        validation_method='backwards',
-        ensemble=ensemble,
-        prediction_interval=0.9,
-    )
-    # 如果 model_list 裡有 dict（CLI 以 JSON 傳入的 model 參數），把它轉成 AutoTS 可接受的 initial_template
-    try:
-        import pandas as _pd
-
-        if isinstance(model_list, list) and any(isinstance(m, dict) for m in model_list):
-            rows = []
-            model_names = []
-            for m in model_list:
-                if isinstance(m, dict):
-                    model_name = m.get('model') or m.get('Model')
-                    params = m.get('model_params') or m.get('ModelParameters') or {}
-                    # ModelParameters in templates is a JSON string
-                    mp = json.dumps(params) if not isinstance(params, str) else params
-                    tp = json.dumps({"fillna": "zero", "transformations": {}, "transformation_params": {}})
-                    rows.append({'Model': model_name, 'ModelParameters': mp, 'TransformationParameters': tp, 'Ensemble': 0})
-                    model_names.append(model_name)
-            if rows:
-                ats_kwargs['initial_template'] = _pd.DataFrame(rows)
-                # set model_list to just the model names for filtering in AutoTS
-                ats_kwargs['model_list'] = list(model_names)
-                model_list = list(model_names)
-    except Exception:
-        pass
-    horizon_dir = os.path.join(output_dir, str(horizon))
-    os.makedirs(horizon_dir, exist_ok=True)
-    print(f'Instantiating AutoTS with model_list=["Prophet"] and horizon={horizon}...')
-    try:
-        model = AutoTS(**{k: v for k, v in ats_kwargs.items() if k != 'forecast_length'})
-    except ValueError as e:
-        msg = str(e)
-        if 'transformer_list' in msg or 'alias not recognized' in msg:
-            print('AutoTS: transformer_list caused error')
-            if not ALLOW_TRANSFORMER_RETRY:
-                print('Transformer retry disabled by ALLOW_TRANSFORMER_RETRY; re-raising')
-                raise
-            print('Retrying with AutoTS default transformers')
-            temp_kwargs = dict(ats_kwargs)
-            if 'transformer_list' in temp_kwargs:
-                temp_kwargs.pop('transformer_list', None)
-            try:
-                model = AutoTS(**{k: v for k, v in temp_kwargs.items() if k != 'forecast_length'})
-            except Exception:
-                print('AutoTS: fallback to default model_list and transformers')
-                if FORBID_MODEL_OVERRIDE:
-                    allow = handle_model_override(model_list, 'default', out_root=horizon_dir if 'horizon_dir' in locals() else None, horizon=horizon, action=ON_OVERRIDE_ACTION)
-                    if not allow:
-                        print('Fallback to default model_list blocked by FORBID_MODEL_OVERRIDE; skipping this horizon')
-                        return
-                model = AutoTS(model_list='default')
-        else:
-            raise
-    try:
-        model.forecast_length = horizon
-    except Exception:
-        pass
-
-    forecast_df = None
-    # 先嘗試使用 AutoTS fit + predict；失敗時回退至直接使用 Prophet
-    try:
-        print(f'Fitting AutoTS (Prophet only) on training set (horizon={horizon})...')
-        model = model.fit(dfp_train, date_col='ds', value_col='y')
-        print('Predicting', horizon, 'steps ahead...')
-        pred = model.predict(forecast_length=horizon)
-        if hasattr(pred, 'forecast'):
-            forecast_df = pred.forecast
-        elif isinstance(pred, pd.DataFrame):
-            forecast_df = pred
-        else:
-            forecast_df = pd.DataFrame(pred)
-    except Exception as e:
-        # print('AutoTS fit/predict failed:', str(e))
-        # print('嘗試使用 Prophet 直接回退預測...')
-        # # Prophet 回退
-        # try:
-        #     try:
-        #         from prophet import Prophet as _Prophet  # type: ignore
-        #     except Exception:
-        #         from fbprophet import Prophet as _Prophet  # type: ignore
-
-        #     forecast_df = fallback_prophet_predict(dfp_train, horizon, _Prophet)
-        # except Exception as e2:
-            print('Prophet fallback 也失敗:', str(e))
-            print('跳過此 horizon', horizon)
+        if len(ser) <= horizon:
+            print(f'資料筆數太少無法切出測試集 (len({len(ser)}) <= horizon {horizon})，跳過')
             return
 
-    horizon_dir = os.path.join(output_dir, str(horizon))
-    os.makedirs(horizon_dir, exist_ok=True)
+        train_ser = ser.iloc[:-horizon].copy()
+        test_ser = ser.iloc[-horizon:].copy()
 
-    try:
-        forecast_df = forecast_df.copy()
-        if len(forecast_df) == len(test_ser):
-            forecast_df.index = test_ser.index
-        elif not isinstance(forecast_df.index, pd.DatetimeIndex):
-            forecast_df.index = pd.date_range(start=pd.Timestamp.now(), periods=len(forecast_df), freq='D')
-    except Exception:
-        pass
+        dfp_train = train_ser.reset_index()
+        dfp_train.columns = ['ds', 'y']
+        dfp_train['ds'] = pd.to_datetime(dfp_train['ds'], errors='coerce')
+        dfp_train = dfp_train.dropna(subset=['ds'])
 
-    filename_base = f'autots_prophet_forecast_{horizon}d'
-    out_filename = f'{filename_base}_{timestamp}_{count}.csv'
-    out_path = os.path.join(horizon_dir, out_filename)
+        # Defensive: ensure DataFrame is a writable copy and numeric where required.
+        dfp_train = dfp_train.copy()
+        dfp_train['y'] = pd.to_numeric(dfp_train['y'], errors='coerce')
+        dfp_train = dfp_train.dropna(subset=['y'])
+        dfp_train['y'] = dfp_train['y'].astype(float)
 
-    try:
-        out = forecast_df.reset_index().rename(columns={'index': 'Date'})
-        out.to_csv(out_path, index=False)
-        print('Saved forecast audit copy to', out_path)
-    except Exception as e:
-        print('儲存預測失敗:', e)
+        # Compute sensible number of validations based on training length to avoid
+        # too-many-validations for short series (prevents out-of-bounds errors).
+        default_num_validations = 3
+        desired_nv = min(default_num_validations, max(1, len(dfp_train) // 2))
 
-    out_csv = os.path.join(horizon_dir, f'forecast_Wh_autots_{horizon}d.csv')
-    try:
-        forecast_df.to_csv(out_csv, index=True)
-        print('Saved forecast to', out_csv)
-    except Exception as e:
-        print('Failed to save forecast_Wh_autots output:', e)
+        ats_kwargs = dict(
+            model_list=local_model_list,
+            forecast_length=horizon,
+            frequency='D',
+            transformer_list=transformer_list,
+            n_jobs=n_jobs,
+            max_generations=max_generations,
+            num_validations=desired_nv,
+            validation_method='backwards',
+            ensemble=ensemble,
+            prediction_interval=0.9,
+        )
+        # 如果 model_list 裡有 dict（CLI 以 JSON 傳入的 model 參數），把它轉成 AutoTS 可接受的 initial_template
+        try:
+            import pandas as _pd
 
-    try:
-        y_true = test_ser.iloc[:, 0].astype(float).values
-        if 'Wh' in forecast_df.columns:
-            y_pred = forecast_df['Wh'].astype(float).values
-        else:
-            y_pred = forecast_df.iloc[:, 0].astype(float).values
-
-        if len(y_pred) == len(y_true):
-            y_naive = np.concatenate(([float(train_ser.iloc[-1, 0])], y_true[:-1])) if horizon > 1 else np.array([float(train_ser.iloc[-1, 0])])
-            scores = compute_forecast_scores(y_true, y_pred, train_ser.iloc[:, 0].astype(float).values)
-            metrics_path = os.path.join(horizon_dir, f'forecast_Wh_metrics_{horizon}d.json')
-            with open(metrics_path, 'w', encoding='utf-8') as mf:
-                json.dump(scores, mf, ensure_ascii=False, indent=2)
-            print('Saved metrics to', metrics_path)
-
+            if isinstance(local_model_list, list) and any(isinstance(m, dict) for m in local_model_list):
+                rows = []
+                model_names = []
+                for m in local_model_list:
+                    if isinstance(m, dict):
+                        model_name = m.get('model') or m.get('Model')
+                        params = m.get('model_params') or m.get('ModelParameters') or {}
+                        # ModelParameters in templates is a JSON string
+                        mp = json.dumps(params) if not isinstance(params, str) else params
+                        tp = json.dumps({"fillna": "zero", "transformations": {}, "transformation_params": {}})
+                        rows.append({'Model': model_name, 'ModelParameters': mp, 'TransformationParameters': tp, 'Ensemble': 0})
+                        model_names.append(model_name)
+                if rows:
+                    ats_kwargs['initial_template'] = _pd.DataFrame(rows)
+                    # set model_list to just the model names for filtering in AutoTS
+                    ats_kwargs['model_list'] = list(model_names)
+                    local_model_list = list(model_names)
+        except Exception:
+            pass
+        # If metric_weighting provided by caller, inject into ats_kwargs for AutoTS
+        if metric_weighting:
             try:
-                plot_path = os.path.join(horizon_dir, f'forecast_vs_actual_vs_naive_lag1_{horizon}.png')
-                plot_forecast_comparison(plot_path, test_ser.index, y_true, y_pred, y_naive,
-                                         title=f'Wh Forecast vs Actual vs Naive Lag-1 ({horizon}d)')
-                print('Saved comparison chart to', plot_path)
-            except Exception as e:
-                print('Failed to save comparison chart:', e)
+                ats_kwargs['metric_weighting'] = metric_weighting
+            except Exception:
+                pass
+        horizon_dir = os.path.join(output_dir, str(horizon))
+        os.makedirs(horizon_dir, exist_ok=True)
+        print(f'Instantiating AutoTS with model_list={model_list} and horizon={horizon}...')
+        try:
+            model = AutoTS(**{k: v for k, v in ats_kwargs.items() if k != 'forecast_length'})
+        except ValueError as e:
+            msg = str(e)
+            if 'transformer_list' in msg or 'alias not recognized' in msg:
+                print('AutoTS: transformer_list caused error')
+                if not ALLOW_TRANSFORMER_RETRY:
+                    print('Transformer retry disabled by ALLOW_TRANSFORMER_RETRY; re-raising')
+                    raise
+                print('Retrying with AutoTS default transformers')
+                temp_kwargs = dict(ats_kwargs)
+                if 'transformer_list' in temp_kwargs:
+                    temp_kwargs.pop('transformer_list', None)
+                try:
+                    model = AutoTS(**{k: v for k, v in temp_kwargs.items() if k != 'forecast_length'})
+                except Exception:
+                    print('AutoTS: fallback to default model_list and transformers')
+                    if FORBID_MODEL_OVERRIDE:
+                        allow = handle_model_override(local_model_list, 'default', out_root=horizon_dir if 'horizon_dir' in locals() else None, horizon=horizon, action=ON_OVERRIDE_ACTION)
+                        if not allow:
+                            print('Fallback to default model_list blocked by FORBID_MODEL_OVERRIDE; skipping this horizon')
+                            return
+                    model = AutoTS(model_list='default')
+            else:
+                raise
+        try:
+            model.forecast_length = horizon
+        except Exception:
+            pass
 
+        forecast_df = None
+        # 先嘗試使用 AutoTS fit + predict；失敗時回退至直接使用 Prophet
+        try:
+            print(f'Fitting AutoTS (Prophet only) on training set (horizon={horizon})...')
+            # pass a deep copy to AutoTS to avoid accidental read-only views inside
+            # downstream numpy operations / transformers
+            model = model.fit(dfp_train.copy(deep=True), date_col='ds', value_col='y')
+            print('Predicting', horizon, 'steps ahead...')
+            pred = model.predict(forecast_length=horizon)
+            if hasattr(pred, 'forecast'):
+                forecast_df = pred.forecast
+            elif isinstance(pred, pd.DataFrame):
+                forecast_df = pred
+            else:
+                forecast_df = pd.DataFrame(pred)
+        except Exception as e:
+            print('AutoTS fit/predict failed:', str(e))
+            # 不進行 Prophet 回退或保守重試：只記錄錯誤並跳過此 horizon
+            err_msg = f'AutoTS fit/predict failed for horizon {horizon}: {e}'
+            print(err_msg)
             try:
-                plot_path2 = os.path.join(horizon_dir, f'forecast_vs_actual_vs_naive_lag1_{horizon}-format2.png')
-                plot_forecast_comparison_legacy(plot_path2, test_ser.index, y_true, y_pred, y_naive,
-                                                mase=scores.get('MASE_lag1'),
-                                                rmsse=scores.get('RMSSE'),
-                                                smape=scores.get('SMAPE(%)'),
-                                                title=f'Wh Forecast vs Actual vs Naive Lag-1 ({horizon}d) - format2')
-                print('Saved comparison chart (format2) to', plot_path2)
-            except Exception as e:
-                print('Failed to save comparison chart format2:', e)
-        else:
-            print('Forecast length does not match test length; skipping metric/plot outputs')
-    except Exception as e:
-        print('Failed to compute metrics or plots:', e)
+                logging.error(err_msg, exc_info=True)
+            except Exception:
+                pass
+            try:
+                os.makedirs(DEBUG_DIR, exist_ok=True)
+                with open(os.path.join(DEBUG_DIR, 'autots_fail.log'), 'a', encoding='utf-8') as lf:
+                    lf.write(datetime.now().isoformat() + ' - ' + err_msg + '\n')
+                    lf.write(traceback.format_exc() + '\n')
+            except Exception:
+                pass
+            print('Skipping this horizon due to AutoTS failure.')
+            return
+
+        horizon_dir = os.path.join(output_dir, str(horizon))
+        os.makedirs(horizon_dir, exist_ok=True)
+
+        try:
+            forecast_df = forecast_df.copy()
+            if len(forecast_df) == len(test_ser):
+                forecast_df.index = test_ser.index
+            elif not isinstance(forecast_df.index, pd.DatetimeIndex):
+                forecast_df.index = pd.date_range(start=pd.Timestamp.now(), periods=len(forecast_df), freq='D')
+        except Exception:
+            pass
+
+        filename_base = f'autots_prophet_forecast_{horizon}d'
+        out_filename = f'{filename_base}_{timestamp}_{count}.csv'
+        out_path = os.path.join(horizon_dir, out_filename)
+
+        try:
+            out = forecast_df.reset_index().rename(columns={'index': 'Date'})
+            out.to_csv(out_path, index=False)
+            print('Saved forecast audit copy to', out_path)
+        except Exception as e:
+            print('儲存預測失敗:', e)
+
+        out_csv = os.path.join(horizon_dir, f'forecast_Wh_autots_{horizon}d.csv')
+        try:
+            forecast_df.to_csv(out_csv, index=True)
+            print('Saved forecast to', out_csv)
+        except Exception as e:
+            print('Failed to save forecast_Wh_autots output:', e)
+
+        try:
+            y_true = test_ser.iloc[:, 0].astype(float).values
+            if 'Wh' in forecast_df.columns:
+                y_pred = forecast_df['Wh'].astype(float).values
+            else:
+                y_pred = forecast_df.iloc[:, 0].astype(float).values
+
+            if len(y_pred) == len(y_true):
+                y_naive = np.concatenate(([float(train_ser.iloc[-1, 0])], y_true[:-1])) if horizon > 1 else np.array([float(train_ser.iloc[-1, 0])])
+                scores = compute_forecast_scores(y_true, y_pred, train_ser.iloc[:, 0].astype(float).values)
+                metrics_path = os.path.join(horizon_dir, f'forecast_Wh_metrics_{horizon}d.json')
+                with open(metrics_path, 'w', encoding='utf-8') as mf:
+                    json.dump(scores, mf, ensure_ascii=False, indent=2)
+                print('Saved metrics to', metrics_path)
+
+                try:
+                    plot_path = os.path.join(horizon_dir, f'forecast_vs_actual_vs_naive_lag1_{horizon}.png')
+                    plot_forecast_comparison(plot_path, test_ser.index, y_true, y_pred, y_naive,
+                                             title=f'Wh Forecast vs Actual vs Naive Lag-1 ({horizon}d)')
+                    print('Saved comparison chart to', plot_path)
+                except Exception as e:
+                    print('Failed to save comparison chart:', e)
+
+                try:
+                    plot_path2 = os.path.join(horizon_dir, f'forecast_vs_actual_vs_naive_lag1_{horizon}-format2.png')
+                    plot_forecast_comparison_legacy(plot_path2, test_ser.index, y_true, y_pred, y_naive,
+                                                    mase=scores.get('MASE_lag1'),
+                                                    rmsse=scores.get('RMSSE'),
+                                                    smape=scores.get('SMAPE(%)'),
+                                                    title=f'Wh Forecast vs Actual vs Naive Lag-1 ({horizon}d) - format2')
+                    print('Saved comparison chart (format2) to', plot_path2)
+                except Exception as e:
+                    print('Failed to save comparison chart format2:', e)
+            else:
+                print('Forecast length does not match test length; skipping metric/plot outputs')
+        except Exception as e:
+            print('Failed to compute metrics or plots:', e)
+
+    rv = None
+    try:
+        rv = _run()
+        return rv
+    finally:
+        try:
+            end_perf = time.perf_counter()
+            end_iso = datetime.now().isoformat()
+            duration_s = end_perf - start_perf
+            exc_type, exc_value, exc_tb = sys.exc_info()
+            exc_text = None
+            if exc_type is not None and exc_value is not None:
+                try:
+                    exc_text = ''.join(traceback.format_exception(exc_type, exc_value, exc_tb))
+                except Exception:
+                    exc_text = str(exc_value)
+            runtime_info = {
+                'horizon': horizon,
+                'timestamp': timestamp,
+                'count': count,
+                'start_iso': start_iso,
+                'end_iso': end_iso,
+                'duration_s': float(duration_s),
+                'random_seed': globals().get('random_seed'),
+                'exception': exc_text,
+            }
+            # try writing into horizon_dir, then output_dir, then debug dir, then temp dir
+            write_paths = [os.path.join(output_dir, str(horizon)), output_dir, DEBUG_DIR, tempfile.gettempdir()]
+            written = False
+            for p in write_paths:
+                try:
+                    os.makedirs(p, exist_ok=True)
+                    outp = os.path.join(p, f'horizon_runtime_{timestamp}_{count}.json')
+                    with open(outp, 'w', encoding='utf-8') as rf:
+                        json.dump(runtime_info, rf, ensure_ascii=False, indent=2)
+                    print('Saved horizon runtime to', outp)
+                    written = True
+                    break
+                except Exception:
+                    continue
+            if not written:
+                print('Failed to save horizon runtime for horizon', horizon)
+        except Exception:
+            pass
 
 
 def main():
     import argparse
 
     parser = argparse.ArgumentParser(description='AutoTS Prophet multi-horizon runner')
+    parser.add_argument('--debug', action='store_true', default=False, help='Enable debug logging and exception capture')
+    parser.add_argument('--debug_log', type=str, default=None, help='Path to debug log file (optional)')
     parser.add_argument('--horizons', nargs='+', type=int, default=[3, 6, 9],
                         help='List of horizons to run, e.g. --horizons 3 6 9')
     parser.add_argument('--n_jobs', type=int, default=-1, help='AutoTS n_jobs')
     parser.add_argument('--max_generations', type=int, default=1, help='AutoTS max_generations')
-    parser.add_argument('--transformer_list', type=str, default='default', help='AutoTS transformer_list')
+    parser.add_argument('--transformer_list', nargs='+', default=['default'], help='AutoTS transformer_list')
     parser.add_argument('--model_list', nargs='+', default=['Prophet'], help='AutoTS model_list')
     parser.add_argument('--ensemble', default=None, help='AutoTS ensemble parameter (None, auto, simple, etc.)')
     parser.add_argument('--input_file', type=str, default=None, help='Path to input CSV file')
+    parser.add_argument('--output_dir', type=str, default=None, help='Override output directory (path). If relative, resolved against script directory')
+    parser.add_argument('--output_tag', type=str, default=None, help='Optional tag included in output path (e.g. experiment name)')
+    parser.add_argument('--metric_weighting', type=str, default=None, help='JSON string or path to JSON file for AutoTS metric_weighting.')
     parser.add_argument('--loop', action='store_true', help='Run horizons repeatedly until interrupted')
+    parser.add_argument('--random_seed', type=int, default=None,
+                        help='Random seed (optional). If not provided, a random 32-bit seed will be generated.')
     parser.add_argument('--forbid_model_override')
     parser.add_argument('--allow_transformer_retry')
     parser.add_argument('--on_override_action')
     args = parser.parse_args()
+
+    # Debug logging / exception capture
+    if getattr(args, 'debug', False):
+        debug_log_path = args.debug_log or os.path.join(DEBUG_DIR, 'child_debug.log')
+        try:
+            os.makedirs(os.path.dirname(debug_log_path), exist_ok=True)
+        except Exception:
+            pass
+        try:
+            logging.basicConfig(filename=debug_log_path, level=logging.DEBUG,
+                                format='%(asctime)s %(levelname)s %(message)s')
+        except Exception:
+            pass
+
+        def _child_excepthook(exc_type, exc_value, exc_tb):
+            tb = ''.join(traceback.format_exception(exc_type, exc_value, exc_tb))
+            try:
+                logging.error('Uncaught exception in child:\n%s', tb)
+            except Exception:
+                pass
+            try:
+                logp = os.path.join(DEBUG_DIR, 'launcher_errors.log')
+                with open(logp, 'a', encoding='utf-8') as lf:
+                    lf.write(datetime.now().isoformat() + ' - child exception: ' + tb + '\n')
+            except Exception:
+                pass
+            try:
+                sys.stderr.write(tb)
+            except Exception:
+                pass
+
+        sys.excepthook = _child_excepthook
 
     # 支援從 CLI 傳入 JSON 字串作為 model_list 的元素，會嘗試解析成 dict
     try:
@@ -510,7 +682,83 @@ def main():
     except Exception:
         pass
 
+    # Parse and normalise metric_weighting argument (accept JSON, file, or simple k:v list)
+    def _parse_metric_weighting_arg(arg):
+        if not arg:
+            return None
+        try:
+            if os.path.exists(arg):
+                with open(arg, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            return json.loads(arg)
+        except Exception:
+            d = {}
+            for p in str(arg).split(','):
+                if not p.strip():
+                    continue
+                if ':' in p:
+                    k, v = p.split(':', 1)
+                elif '=' in p:
+                    k, v = p.split('=', 1)
+                else:
+                    continue
+                try:
+                    d[k.strip()] = float(v.strip())
+                except Exception:
+                    d[k.strip()] = v.strip()
+            return d
+
+    def _normalize_metric_weighting(mw):
+        if not isinstance(mw, dict):
+            return mw
+        def _to_number(v):
+            try:
+                if isinstance(v, (int, float)) and not isinstance(v, bool):
+                    return float(v)
+                if isinstance(v, str):
+                    s = v.strip().strip('"\'""').strip('{} ').strip()
+                    return float(s)
+            except Exception:
+                pass
+            return v
+
+        out = {}
+        for k, v in mw.items():
+            kk = str(k)
+            vv = _to_number(v)
+            if kk.lower().endswith('_weighting'):
+                out[kk.lower()] = vv
+                continue
+            u = kk.upper()
+            if u == 'MAE':
+                out['mae_weighting'] = vv
+            elif u == 'SMAPE':
+                out['smape_weighting'] = vv
+            elif u == 'RMSE':
+                out['rmse_weighting'] = vv
+            elif u == 'MASE':
+                out['mase_weighting'] = vv
+            else:
+                out[kk.lower()] = vv
+
+        try:
+            others = [float(x) for kk, x in out.items() if kk != 'mae_weighting' and isinstance(x, (int, float))]
+            max_other = max(others) if others else 0.0
+        except Exception:
+            max_other = 0.0
+        try:
+            out['mae_weighting'] = max(float(out.get('mae_weighting', 0)), max_other + 1)
+        except Exception:
+            out['mae_weighting'] = max_other + 1
+        return out
+
+    metric_weighting = _parse_metric_weighting_arg(getattr(args, 'metric_weighting', None))
+    metric_weighting = _normalize_metric_weighting(metric_weighting)
+
     base = os.path.dirname(__file__)
+    # 將預設輸出根目錄移到 script 的 output 子目錄
+    output_root = os.path.join(base, 'output')
+    os.makedirs(output_root, exist_ok=True)
     if args.input_file:
         inp = os.path.normpath(args.input_file)
         if not os.path.exists(inp):
@@ -534,6 +782,19 @@ def main():
     max_generations = args.max_generations
     transformer_list = args.transformer_list
     model_list = args.model_list
+
+    # Normalize launcher/CLI inputs: treat ['default'] as the 'default' sentinel
+    try:
+        if isinstance(model_list, list) and len(model_list) == 1 and model_list[0] == 'default':
+            model_list = 'default'
+    except Exception:
+        pass
+    try:
+        if isinstance(transformer_list, list) and len(transformer_list) == 1 and transformer_list[0] == 'default':
+            transformer_list = 'default'
+    except Exception:
+        pass
+
     ensemble = None if args.ensemble in (None, 'None', 'none') else args.ensemble
 
     # CLI flag overrides for strict override behavior
@@ -548,36 +809,168 @@ def main():
     if getattr(args, 'on_override_action', None) is not None:
         globals()['ON_OVERRIDE_ACTION'] = args.on_override_action
 
+    # Enforce repository policy: always forbid AutoTS model override regardless of CLI
+    try:
+        globals()['FORBID_MODEL_OVERRIDE'] = True
+    except Exception:
+        pass
+
+    validate_model_data_compatibility(model_list, ser.shape[1])
+    print(
+        'Effective config:',
+        f'model_list={model_list},',
+        f'transformer_list={transformer_list},',
+        f'ensemble={ensemble},',
+        f'FORBID_MODEL_OVERRIDE={FORBID_MODEL_OVERRIDE},',
+        f'ALLOW_TRANSFORMER_RETRY={ALLOW_TRANSFORMER_RETRY},',
+        f'ON_OVERRIDE_ACTION={ON_OVERRIDE_ACTION}'
+    )
+
     AutoTS = init_autots()
+
+    # ------- Random seed setup -------
+    random_seed = getattr(args, 'random_seed', None)
+    if random_seed is None:
+        try:
+            import random as _tmp_rand
+            random_seed = _tmp_rand.randint(0, 2**31 - 1)
+        except Exception:
+            random_seed = 0
+    try:
+        globals()['random_seed'] = int(random_seed)
+    except Exception:
+        pass
+
+    try:
+        import random as _py_random
+        _py_random.seed(random_seed)
+    except Exception:
+        pass
+    try:
+        np.random.seed(random_seed)
+    except Exception:
+        pass
+    try:
+        os.environ['PYTHONHASHSEED'] = str(random_seed)
+    except Exception:
+        pass
+
+    print('Using random_seed:', random_seed)
+    # ------- end seed setup -------
+
+    # sanitize helper and derive safe_model_name for output folder naming
+    def _sanitize_name(name):
+        s = str(name or '').strip()
+        s = re.sub(r'[^A-Za-z0-9._-]+', '_', s)
+        if not s:
+            s = os.path.splitext(os.path.basename(__file__))[0]
+        reserved = {'CON', 'PRN', 'AUX', 'NUL', 'COM1', 'COM2', 'COM3', 'COM4', 'LPT1', 'LPT2', 'LPT3'}
+        if s.upper() in reserved:
+            s = '_' + s
+        return s
+
+    try:
+        raw_names = []
+        if isinstance(model_list, list):
+            for m in model_list:
+                if isinstance(m, dict):
+                    mn = m.get('model') or m.get('Model')
+                    if mn:
+                        raw_names.append(str(mn))
+                    else:
+                        raw_names.append(json.dumps(m.get('model_params') or m.get('ModelParameters') or {}))
+                else:
+                    raw_names.append(str(m))
+        else:
+            raw_names.append(str(model_list))
+        if len(raw_names) == 1:
+            raw_model_name = raw_names[0]
+        else:
+            raw_model_name = '+'.join([n for n in raw_names if n])
+        safe_model_name = _sanitize_name(raw_model_name)
+    except Exception:
+        safe_model_name = _sanitize_name(None)
+
+    # sanitize user-provided output tag (if any)
+    if getattr(args, 'output_tag', None):
+        safe_output_tag = _sanitize_name(args.output_tag)
+    else:
+        safe_output_tag = None
 
     iteration = 0
     while True:
         iteration += 1
         print(f'Iteration {iteration} start...')
         # 決定 timestamp 與 count（只做一次，置於父目錄名稱中）
-        output_dir, timestamp, count = get_output_parent(base)
-        for horizon in horizons:
-            run_horizon(AutoTS, ser, horizon, output_dir, timestamp, count,
-                        n_jobs=n_jobs,
-                        max_generations=max_generations,
-                        transformer_list=transformer_list,
-                        model_list=model_list,
-                        ensemble=ensemble)
-            # 每跑完一個 horizon，增加 count，用於下一個 horizon 的檔名 suffix
-            count += 1
+        if getattr(args, 'output_dir', None):
+            # Treat provided --output_dir as a root; child will create
+            # {root}/{model}/{tag?}/{timestamp}
+            output_root_override = os.path.normpath(args.output_dir)
+            if not os.path.isabs(output_root_override):
+                output_root_override = os.path.normpath(os.path.join(output_root, output_root_override))
+            output_dir, timestamp, count = get_output_parent(output_root_override, name_hint=safe_model_name, user_tag=safe_output_tag)
+        else:
+            # 預設輸出目錄改為 script/output/{model}/{tag?}/{timestamp}
+            output_dir, timestamp, count = get_output_parent(output_root, name_hint=safe_model_name, user_tag=safe_output_tag)
+        iter_start_perf = time.perf_counter()
+        iter_start_iso = datetime.now().isoformat()
+        try:
+            for horizon in horizons:
+                run_horizon(AutoTS, ser, horizon, output_dir, timestamp, count,
+                            n_jobs=n_jobs,
+                            max_generations=max_generations,
+                            transformer_list=transformer_list,
+                            model_list=model_list,
+                            ensemble=ensemble,
+                            metric_weighting=metric_weighting)
+                # 每跑完一個 horizon，增加 count，用於下一個 horizon 的檔名 suffix
+                count += 1
+        finally:
+            try:
+                iter_end_perf = time.perf_counter()
+                iter_end_iso = datetime.now().isoformat()
+                iter_duration_s = iter_end_perf - iter_start_perf
+                iter_info = {
+                    'iteration': iteration,
+                    'start_iso': iter_start_iso,
+                    'end_iso': iter_end_iso,
+                    'duration_s': float(iter_duration_s),
+                    'horizons': horizons,
+                    'timestamp': timestamp,
+                    'count_end': count,
+                    'random_seed': globals().get('random_seed'),
+                }
+                try:
+                    os.makedirs(output_dir, exist_ok=True)
+                    iter_path = os.path.join(output_dir, f'iteration_runtime_{timestamp}_{iteration}.json')
+                    with open(iter_path, 'w', encoding='utf-8') as itf:
+                        json.dump(iter_info, itf, ensure_ascii=False, indent=2)
+                    print('Saved iteration runtime to', iter_path)
+                except Exception:
+                    try:
+                        fallback = tempfile.gettempdir()
+                        iter_path = os.path.join(fallback, f'iteration_runtime_{timestamp}_{iteration}.json')
+                        with open(iter_path, 'w', encoding='utf-8') as itf:
+                            json.dump(iter_info, itf, ensure_ascii=False, indent=2)
+                        print('Saved iteration runtime to', iter_path)
+                    except Exception:
+                        print('Failed to save iteration runtime for iteration', iteration)
+            except Exception:
+                pass
 
         # 將 effective settings 儲存在本次迭代的 output 目錄
         try:
             ats_kwargs_template = {
-                'model_list': list(model_list),
+                'model_list': model_list,
                 'frequency': 'D',
                 'transformer_list': transformer_list,
                 'n_jobs': int(n_jobs),
                 'max_generations': int(max_generations),
-                'num_validations': 3,
+                'num_validations': 'auto',
                 'validation_method': 'backwards',
                 'ensemble': ensemble,
                 'prediction_interval': 0.9,
+                'metric_weighting': metric_weighting,
             }
             save_effective_settings(output_dir, inp, horizons, timestamp, ats_kwargs_template)
         except Exception:
@@ -588,4 +981,38 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    script_start_perf = time.perf_counter()
+    script_start_iso = datetime.now().isoformat()
+    try:
+        main()
+    finally:
+        try:
+            script_end_perf = time.perf_counter()
+            script_end_iso = datetime.now().isoformat()
+            script_duration_s = script_end_perf - script_start_perf
+            script_info = {
+                'start_iso': script_start_iso,
+                'end_iso': script_end_iso,
+                'duration_s': float(script_duration_s),
+                'random_seed': globals().get('random_seed'),
+            }
+            try:
+                out_dir = DEBUG_DIR
+                os.makedirs(out_dir, exist_ok=True)
+                out_name = f'script_runtime_{datetime.now().strftime("%y%m%d_%H%M%S")}.json'
+                out_path = os.path.join(out_dir, out_name)
+                with open(out_path, 'w', encoding='utf-8') as sf:
+                    json.dump(script_info, sf, ensure_ascii=False, indent=2)
+                print('Saved script runtime to', out_path)
+            except Exception:
+                try:
+                    fallback = tempfile.gettempdir()
+                    out_name = f'script_runtime_{datetime.now().strftime("%y%m%d_%H%M%S")}.json'
+                    out_path = os.path.join(fallback, out_name)
+                    with open(out_path, 'w', encoding='utf-8') as sf:
+                        json.dump(script_info, sf, ensure_ascii=False, indent=2)
+                    print('Saved script runtime to', out_path)
+                except Exception:
+                    print('Failed to save script runtime summary.')
+        except Exception:
+            pass

@@ -16,6 +16,39 @@ import sys
 import json
 
 
+import time
+import json
+
+def find_latest_effective_settings(output_root: Path):
+    try:
+        candidates = list(Path(output_root).rglob('effective_settings.json'))
+    except Exception:
+        return None
+    if not candidates:
+        return None
+    latest = max(candidates, key=lambda p: p.stat().st_mtime)
+    return latest
+
+
+def check_effective_settings_file(path: Path, expected_seed=None, expected_forbid=True, expected_on_override='fail'):
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            j = json.load(f)
+    except Exception as e:
+        return False, f'cannot_read_json:{e}'
+    if expected_seed is not None:
+        try:
+            if int(j.get('random_seed')) != int(expected_seed):
+                return False, f'seed_mismatch({j.get("random_seed")})'
+        except Exception:
+            return False, 'seed_mismatch'
+    if expected_forbid and j.get('FORBID_MODEL_OVERRIDE') is not True:
+        return False, f'FORBID_MODEL_OVERRIDE={j.get("FORBID_MODEL_OVERRIDE")}'
+    if j.get('ON_OVERRIDE_ACTION') != expected_on_override:
+        return False, f'ON_OVERRIDE_ACTION={j.get("ON_OVERRIDE_ACTION")}'
+    return True, 'ok'
+
+
 # --- 在此區編輯參數 (設為 None 表示不覆寫) ---
 # 範例：horizons = [30, 14, 7]
 # horizons = None
@@ -119,6 +152,9 @@ enable_pvgis_fr = True
 random_seed = None
 # random_seed = 12345
 
+# Enforce safe defaults: unless user overrides, keep model/transformer protection enabled
+forbid_model_override = True
+allow_transformer_retry = True
 HERE = os.path.dirname(__file__)
 # TARGET = os.path.join(HERE, '6v3-autoTs_WeatherToDayWh.py')
 TARGET = os.path.join(HERE, '6v4c-autoTs_WeatherToDayWh.py')
@@ -130,7 +166,8 @@ if not os.path.exists(TARGET):
 SUPPORTED = [
     'default_max_generations', 'horizons', 'InfiniteLoop', 'default_model_list',
     'default_ensemble', 'default_n_jobs', 'default_transformer_list', 'default_num_validations',
-    'enable_future_regressor', 'enable_fit_future_regressor', 'enable_predict_future_regressor', 'enable_pvgis_fr', 'random_seed'
+    'enable_future_regressor', 'enable_fit_future_regressor', 'enable_predict_future_regressor', 'enable_pvgis_fr', 'random_seed',
+    'forbid_model_override', 'allow_transformer_retry'
 ]
 
 
@@ -166,6 +203,8 @@ def main():
     parser.add_argument('--enable_future_regressor')
     parser.add_argument('--enable_fit_future_regressor')
     parser.add_argument('--enable_predict_future_regressor')
+    parser.add_argument('--forbid_model_override')
+    parser.add_argument('--allow_transformer_retry')
     parser.add_argument('--enable_pvgis_fr')
     parser.add_argument('--random_seed')
     # allow passing arbitrary extra args which will be forwarded unchanged

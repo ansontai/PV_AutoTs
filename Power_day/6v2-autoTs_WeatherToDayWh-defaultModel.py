@@ -126,7 +126,7 @@ def plot_forecast_comparison(plot_path, index, y_true, y_pred, y_naive, title=No
 # Defaults for input/output paths (集中於檔案頂端方便修改)
 # DEFAULT_INPUT: CSV 檔案（絕對或相對於此腳本的路徑）
 # DEFAULT_INPUT = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'csv', 'SolarRecord(260204)_d_forWh_WithCodis.csv'))
-DEFAULT_INPUT = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'csv', 'SolarRecord(260310)_d_forWh_WithCodis.csv'))
+DEFAULT_INPUT = os.path.normpath(os.path.join(os.path.dirname(__file__), '..', 'csv', 'SolarRecord(260228)_d_forWh_WithCodis.csv'))
 # DEFAULT_OUTPUT_PARENT: 此腳本產生的 runs 輸出父資料夾（每次 run 會建立子資料夾）
 DEFAULT_OUTPUT_PARENT = os.path.normpath(os.path.join(os.path.dirname(__file__), 'output'))
 
