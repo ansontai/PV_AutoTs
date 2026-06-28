@@ -1,5 +1,5 @@
 {
-    "git.enabled": false,
+    "git.enabled": true,
     "git.autofetch": false
 }{
     "python.defaultInterpreterPath": "T:\\OneDrive\\1TB\\School\\PV_autoTs\\.venv\\Scripts\\python.exe",
