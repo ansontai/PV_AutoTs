@@ -1,0 +1,370 @@
+{
+  "timestamp": "2026-05-04T08:01:05.166743",
+  "basic_statistics": {
+    "filename": "SolarRecord_260310_1829-row.csv",
+    "shape_rows": 325688,
+    "shape_columns": 15,
+    "memory_mb": 185.8012819290161,
+    "total_cells": 4885320,
+    "null_cells": 1628439,
+    "null_ratio": 0.33333312863845155,
+    "duplicate_rows": 110,
+    "duplicate_ratio": 0.00033774655498513916
+  },
+  "columns": [
+    {
+      "column_name": "LocalTime",
+      "dtype": "str",
+      "non_null_count": 325688,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 319477,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "2025/12/14 11:27",
+      "most_common_freq": 4,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "W",
+      "dtype": "str",
+      "non_null_count": 325687,
+      "null_count": 1,
+      "null_ratio": 3.070423227137629e-06,
+      "unique_values": 3297,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "0",
+      "most_common_freq": 42476,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "DHT11_temp",
+      "dtype": "str",
+      "non_null_count": 325688,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 22,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "37",
+      "most_common_freq": 52647,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "DHT11_humidity",
+      "dtype": "str",
+      "non_null_count": 325688,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 37,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "15",
+      "most_common_freq": 61744,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "LM35_tempC",
+      "dtype": "str",
+      "non_null_count": 325688,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 26,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "33.69",
+      "most_common_freq": 63858,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "INA219_busVoltage_V",
+      "dtype": "str",
+      "non_null_count": 325688,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 861,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "0",
+      "most_common_freq": 42476,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "INA219_shuntVoltage_mV",
+      "dtype": "str",
+      "non_null_count": 325688,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 49,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "-0.01",
+      "most_common_freq": 92090,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "INA219_current_mA",
+      "dtype": "str",
+      "non_null_count": 325688,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 48,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "-1",
+      "most_common_freq": 92071,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "INA219_power_mW",
+      "dtype": "str",
+      "non_null_count": 325688,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 14,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "0",
+      "most_common_freq": 191405,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "ACS712_20A_current_A",
+      "dtype": "str",
+      "non_null_count": 325688,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 10,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "0.12",
+      "most_common_freq": 127871,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Unnamed: 10",
+      "dtype": "float64",
+      "non_null_count": 0,
+      "null_count": 325688,
+      "null_ratio": 1.0,
+      "unique_values": 0,
+      "has_duplicates": true,
+      "is_constant": true,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_binary": true,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Unnamed: 11",
+      "dtype": "float64",
+      "non_null_count": 0,
+      "null_count": 325688,
+      "null_ratio": 1.0,
+      "unique_values": 0,
+      "has_duplicates": true,
+      "is_constant": true,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_binary": true,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Unnamed: 12",
+      "dtype": "float64",
+      "non_null_count": 0,
+      "null_count": 325688,
+      "null_ratio": 1.0,
+      "unique_values": 0,
+      "has_duplicates": true,
+      "is_constant": true,
+      "is_numeric": false,
+      "is_datetime": false,
+      "is_binary": true,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Unnamed: 13",
+      "dtype": "float64",
+      "non_null_count": 1,
+      "null_count": 325687,
+      "null_ratio": 0.9999969295767729,
+      "unique_values": 1,
+      "has_duplicates": true,
+      "is_constant": true,
+      "is_numeric": false,
+      "most_common_value": "0.0",
+      "most_common_freq": 1,
+      "is_datetime": false,
+      "is_binary": true,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Unnamed: 14",
+      "dtype": "str",
+      "non_null_count": 1,
+      "null_count": 325687,
+      "null_ratio": 0.9999969295767729,
+      "unique_values": 1,
+      "has_duplicates": true,
+      "is_constant": true,
+      "is_numeric": false,
+      "most_common_value": "1899-12-30 0:00:00",
+      "most_common_freq": 1,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    }
+  ],
+  "date_range": {
+    "date_column": "LocalTime",
+    "date_min": "2025-04-22 23:49:00",
+    "date_max": "2026-01-14 00:29:00",
+    "date_span_days": 266
+  },
+  "timeseries_features": {
+    "timeseries_info": {
+      "date_column": "LocalTime",
+      "date_min": "2025-04-22 23:49:00",
+      "date_max": "2026-01-14 00:29:00",
+      "date_span_days": 266
+    }
+  },
+  "correlation_summary": {
+    "numeric_columns": 4,
+    "high_correlation_pairs": [],
+    "correlation_matrix_mean_abs": null
+  },
+  "quality_metrics": {
+    "completeness_ratio": 0.6666668713615485,
+    "constant_columns": 5,
+    "problematic_columns": [
+      {
+        "column": "W",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "DHT11_temp",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "DHT11_humidity",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "LM35_tempC",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "INA219_busVoltage_V",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "INA219_shuntVoltage_mV",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "INA219_current_mA",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "INA219_power_mW",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "ACS712_20A_current_A",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Unnamed: 10",
+        "issues": [
+          "high_null_ratio",
+          "constant",
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Unnamed: 11",
+        "issues": [
+          "high_null_ratio",
+          "constant",
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Unnamed: 12",
+        "issues": [
+          "high_null_ratio",
+          "constant",
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Unnamed: 13",
+        "issues": [
+          "high_null_ratio",
+          "constant",
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Unnamed: 14",
+        "issues": [
+          "high_null_ratio",
+          "constant",
+          "high_duplicate_ratio"
+        ]
+      }
+    ],
+    "extreme_skew_columns": 0
+  }
+}

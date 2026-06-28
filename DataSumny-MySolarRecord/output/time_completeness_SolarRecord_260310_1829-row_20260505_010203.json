@@ -1,0 +1,45 @@
+﻿{
+  "metadata": {
+    "analysis_file": "T:\\OneDrive\\1TB\\School\\PV_autoTs\\DataSumny-MySolarRecord\\input\\SolarRecord_260310_1829-row.csv",
+    "analysis_datetime": "2026-05-05T01:02:03.955565",
+    "time_range_start": "2025-04-22T23:49:00",
+    "time_range_end": "2026-03-10T18:28:03"
+  },
+  "data_cleaning": {
+    "original_count": 325688,
+    "valid_count": 319276,
+    "removed_count": 6412
+  },
+  "minute_analysis": {
+    "expected": 463360,
+    "observed": 318866,
+    "missing": 144494,
+    "pct_vs_expected": 31.18,
+    "pct_vs_observed": 45.31,
+    "duration_span": "321 days, 18:39:00"
+  },
+  "hour_analysis": {
+    "expected": 7724,
+    "observed": 6276,
+    "missing": 1448,
+    "pct_vs_expected": 18.75,
+    "pct_vs_observed": 23.07,
+    "duration_span": "321 days, 19:00:00"
+  },
+  "day_analysis": {
+    "expected": 323,
+    "observed": 319,
+    "missing": 4,
+    "pct_vs_expected": 1.24,
+    "pct_vs_observed": 1.25,
+    "duration_span": "322 days, 0:00:00"
+  },
+  "notes": {
+    "calculation_rules": [
+      "pct_vs_expected: 缺失筆數 / 預期筆數 * 100",
+      "pct_vs_observed: 缺失筆數 / 觀測筆數 * 100",
+      "首尾不完整時段已納入預期筆數計算",
+      "時間戳對齐至該粒度後去重計算"
+    ]
+  }
+}

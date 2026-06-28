@@ -1,0 +1,1275 @@
+{
+  "timestamp": "2026-05-04T08:00:57.303950",
+  "basic_statistics": {
+    "filename": "2000--202602-d.csv",
+    "shape_rows": 9404,
+    "shape_columns": 48,
+    "memory_mb": 13.73447322845459,
+    "total_cells": 451392,
+    "null_cells": 19450,
+    "null_ratio": 0.04308893378704098,
+    "duplicate_rows": 0,
+    "duplicate_ratio": 0.0
+  },
+  "columns": [
+    {
+      "column_name": "ObsTime",
+      "dtype": "int64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 31,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 15.727881752445768,
+      "std": 8.799724028407116,
+      "min": 1.0,
+      "max": 31.0,
+      "median": 16.0,
+      "q25": 8.0,
+      "q75": 23.0,
+      "iqr": 15.0,
+      "skewness": 0.006857701739011445,
+      "kurtosis": -1.1939138368867452,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "StnPres",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 352,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 1002.5950765631645,
+      "std": 5.65683904066835,
+      "min": 962.7,
+      "max": 1020.8,
+      "median": 1002.6,
+      "q25": 998.9,
+      "q75": 1006.7,
+      "iqr": 7.800000000000068,
+      "skewness": -0.41987475498742444,
+      "kurtosis": 1.0691989577574503,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "SeaPres",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 361,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 1012.491248404934,
+      "std": 5.840305317043894,
+      "min": 972.1,
+      "max": 1031.5,
+      "median": 1012.4,
+      "q25": 1008.6,
+      "q75": 1016.8,
+      "iqr": 8.199999999999932,
+      "skewness": -0.3772756399712966,
+      "kurtosis": 0.9247722842068145,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "StnPresMax",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 337,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 1004.5815504040834,
+      "std": 5.566982404986319,
+      "min": 968.7,
+      "max": 1023.0,
+      "median": 1004.5,
+      "q25": 1000.7,
+      "q75": 1008.7,
+      "iqr": 8.0,
+      "skewness": -0.163623395582615,
+      "kurtosis": 0.04076768781624995,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "StnPresMaxTime",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 9404,
+      "has_duplicates": false,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "2000/01/01 08:11:00",
+      "most_common_freq": 1,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "StnPresMin",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 381,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 1000.5189706507867,
+      "std": 5.882387236100458,
+      "min": 949.7,
+      "max": 1016.9,
+      "median": 1000.6,
+      "q25": 997.0,
+      "q75": 1004.7,
+      "iqr": 7.7000000000000455,
+      "skewness": -0.9125766726604673,
+      "kurtosis": 3.9516405367731524,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "StnPresMinTime",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 9404,
+      "has_duplicates": false,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "2000/01/01 15:28:00",
+      "most_common_freq": 1,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Temperature",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 224,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 23.979508719693747,
+      "std": 4.782490945719396,
+      "min": 5.8,
+      "max": 32.0,
+      "median": 25.1,
+      "q25": 20.2,
+      "q75": 28.1,
+      "iqr": 7.900000000000002,
+      "skewness": -0.5786925274178898,
+      "kurtosis": -0.6801844396839343,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "T Max",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 256,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 28.643492131008085,
+      "std": 4.821268238687357,
+      "min": 7.8,
+      "max": 39.9,
+      "median": 29.7,
+      "q25": 25.5,
+      "q75": 32.6,
+      "iqr": 7.100000000000001,
+      "skewness": -0.8101323836735644,
+      "kurtosis": 0.05345609973053689,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "T Max Time",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 9404,
+      "has_duplicates": false,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "2000/01/01 12:51:00",
+      "most_common_freq": 1,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "T Min",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 228,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 20.62471288813271,
+      "std": 4.93127108491309,
+      "min": 4.4,
+      "max": 28.9,
+      "median": 21.9,
+      "q25": 16.6,
+      "q75": 24.8,
+      "iqr": 8.2,
+      "skewness": -0.5432268264895814,
+      "kurtosis": -0.777400147322513,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "T Min Time",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 9404,
+      "has_duplicates": false,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "2000/01/01 23:48:00",
+      "most_common_freq": 1,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Td dew point",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 252,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 18.839972352190554,
+      "std": 5.032365780484573,
+      "min": -0.6,
+      "max": 27.4,
+      "median": 20.1,
+      "q25": 15.1,
+      "q75": 23.3,
+      "iqr": 8.200000000000001,
+      "skewness": -0.7021323295854598,
+      "kurtosis": -0.36159002621818903,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "RH",
+      "dtype": "int64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 61,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 74.09793704806465,
+      "std": 7.679219601983931,
+      "min": 36.0,
+      "max": 99.0,
+      "median": 74.0,
+      "q25": 70.0,
+      "q75": 79.0,
+      "iqr": 9.0,
+      "skewness": -0.050605271006094944,
+      "kurtosis": 0.724768431344994,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "RHMin",
+      "dtype": "int64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 79,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 56.51595065929392,
+      "std": 10.265240262747428,
+      "min": 13.0,
+      "max": 94.0,
+      "median": 57.0,
+      "q25": 51.0,
+      "q75": 62.0,
+      "iqr": 11.0,
+      "skewness": 0.04946000279987184,
+      "kurtosis": 0.9180271985249746,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "RHMinTime",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 9404,
+      "has_duplicates": false,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "2000/01/01 14:16:00",
+      "most_common_freq": 1,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "WS",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 51,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 1.485867715865589,
+      "std": 0.5911999398385458,
+      "min": 0.1,
+      "max": 6.3,
+      "median": 1.3,
+      "q25": 1.1,
+      "q75": 1.8,
+      "iqr": 0.7,
+      "skewness": 1.3424690343948293,
+      "kurtosis": 3.28981039600432,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "WD",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 72,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "340",
+      "most_common_freq": 1069,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "WSGust",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 179,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "6.8",
+      "most_common_freq": 264,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "WDGust",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 73,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "350",
+      "most_common_freq": 1055,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "WGustTime",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 9404,
+      "has_duplicates": false,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "2000/01/01 14:34:00",
+      "most_common_freq": 1,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Precp",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 576,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "0.0",
+      "most_common_freq": 6191,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "PrecpHour",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 206,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 1.319332199064228,
+      "std": 3.18671944741985,
+      "min": 0.0,
+      "max": 24.0,
+      "median": 0.0,
+      "q25": 0.0,
+      "q75": 0.8,
+      "iqr": 0.8,
+      "skewness": 3.472186013697041,
+      "kurtosis": 13.848461958310391,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "PrecpMax10",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 116,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "0.0",
+      "most_common_freq": 6191,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "PrecpMax10Time",
+      "dtype": "str",
+      "non_null_count": 9251,
+      "null_count": 153,
+      "null_ratio": 0.01626967247979583,
+      "unique_values": 3213,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "--",
+      "most_common_freq": 6039,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "PrecpMax60",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 289,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "0.0",
+      "most_common_freq": 6191,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "PrecpMax60Time",
+      "dtype": "str",
+      "non_null_count": 9251,
+      "null_count": 153,
+      "null_ratio": 0.01626967247979583,
+      "unique_values": 3214,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "--",
+      "most_common_freq": 6038,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "SunShine",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 123,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 5.564089749042961,
+      "std": 3.5112808451146944,
+      "min": 0.0,
+      "max": 12.5,
+      "median": 6.1,
+      "q25": 2.3,
+      "q75": 8.8,
+      "iqr": 6.500000000000001,
+      "skewness": -0.25135544174042085,
+      "kurtosis": -1.2958760767584456,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "SunshineRate",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 924,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 46.53043385793279,
+      "std": 29.941130779064256,
+      "min": 0.0,
+      "max": 94.4,
+      "median": 50.25,
+      "q25": 18.9,
+      "q75": 73.225,
+      "iqr": 54.324999999999996,
+      "skewness": -0.17701650978917507,
+      "kurtosis": -1.3016130429675283,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "GloblRad",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 2468,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "X",
+      "most_common_freq": 119,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "VisbMean",
+      "dtype": "float64",
+      "non_null_count": 9039,
+      "null_count": 365,
+      "null_ratio": 0.03881327094853254,
+      "unique_values": 148,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 11.166091381790022,
+      "std": 3.0742219443322227,
+      "min": 2.6,
+      "max": 21.3,
+      "median": 10.8,
+      "q25": 9.3,
+      "q75": 12.8,
+      "iqr": 3.5,
+      "skewness": 0.5646406681949299,
+      "kurtosis": 0.5591476211714381,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "EvapA",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 161,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "/",
+      "most_common_freq": 201,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "UVI Max",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 17,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "5",
+      "most_common_freq": 1557,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "UVI Max Time",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 9379,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "--",
+      "most_common_freq": 26,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Cloud Amount",
+      "dtype": "float64",
+      "non_null_count": 9039,
+      "null_count": 365,
+      "null_ratio": 0.03881327094853254,
+      "unique_values": 101,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 5.886093594424161,
+      "std": 2.825720429649572,
+      "min": 0.0,
+      "max": 10.0,
+      "median": 6.0,
+      "q25": 3.8,
+      "q75": 8.4,
+      "iqr": 4.6000000000000005,
+      "skewness": -0.3169138514785991,
+      "kurtosis": -0.905464732133241,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "TxSoil0cm",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 227,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 25.405455125478518,
+      "std": 4.436085028837469,
+      "min": 11.2,
+      "max": 35.9,
+      "median": 26.3,
+      "q25": 21.8,
+      "q75": 29.0,
+      "iqr": 7.199999999999999,
+      "skewness": -0.4769891148557355,
+      "kurtosis": -0.7285246778290526,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "TxSoil5cm",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 206,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "28.8",
+      "most_common_freq": 130,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "TxSoil10cm",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 190,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 25.10529561888558,
+      "std": 4.163846976019718,
+      "min": 13.3,
+      "max": 33.0,
+      "median": 26.0,
+      "q25": 21.5,
+      "q75": 28.7,
+      "iqr": 7.199999999999999,
+      "skewness": -0.44502953936072404,
+      "kurtosis": -0.9851268607844195,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "TxSoil20cm",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 178,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 25.470640153126332,
+      "std": 3.9756587325074,
+      "min": 15.3,
+      "max": 33.3,
+      "median": 26.4,
+      "q25": 21.975,
+      "q75": 29.0,
+      "iqr": 7.024999999999999,
+      "skewness": -0.4061336201542387,
+      "kurtosis": -1.0871294054113785,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "TxSoil30cm",
+      "dtype": "float64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 170,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 25.472926414291795,
+      "std": 3.8604847154371513,
+      "min": 15.7,
+      "max": 33.0,
+      "median": 26.3,
+      "q25": 22.0,
+      "q75": 28.9,
+      "iqr": 6.899999999999999,
+      "skewness": -0.382803918237285,
+      "kurtosis": -1.1212748441436782,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "TxSoil50cm",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 146,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "29.5",
+      "most_common_freq": 206,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "TxSoil100cm",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 111,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "28.7",
+      "most_common_freq": 285,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Year",
+      "dtype": "int64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 27,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 2012.6031475967673,
+      "std": 7.568967150652362,
+      "min": 2000.0,
+      "max": 2026.0,
+      "median": 2013.0,
+      "q25": 2006.0,
+      "q75": 2019.0,
+      "iqr": 13.0,
+      "skewness": -0.0012106225043506799,
+      "kurtosis": -1.198559456826789,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Month",
+      "dtype": "int64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 12,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 6.502445767758401,
+      "std": 3.436065354194599,
+      "min": 1.0,
+      "max": 12.0,
+      "median": 7.0,
+      "q25": 4.0,
+      "q75": 9.0,
+      "iqr": 5.0,
+      "skewness": -0.008341561403323197,
+      "kurtosis": -1.1979681035458138,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Day",
+      "dtype": "int64",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 31,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": true,
+      "mean": 15.727881752445768,
+      "std": 8.799724028407116,
+      "min": 1.0,
+      "max": 31.0,
+      "median": 16.0,
+      "q25": 8.0,
+      "q75": 23.0,
+      "iqr": 15.0,
+      "skewness": 0.006857701739011445,
+      "kurtosis": -1.1939138368867452,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Date",
+      "dtype": "str",
+      "non_null_count": 9404,
+      "null_count": 0,
+      "null_ratio": 0.0,
+      "unique_values": 9404,
+      "has_duplicates": false,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "2000-01-01",
+      "most_common_freq": 1,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "VisbMean Auto",
+      "dtype": "str",
+      "non_null_count": 90,
+      "null_count": 9314,
+      "null_ratio": 0.9904296044236495,
+      "unique_values": 57,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "--",
+      "most_common_freq": 30,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    },
+    {
+      "column_name": "Cloud Amount Sat",
+      "dtype": "str",
+      "non_null_count": 304,
+      "null_count": 9100,
+      "null_ratio": 0.9676733304976606,
+      "unique_values": 89,
+      "has_duplicates": true,
+      "is_constant": false,
+      "is_numeric": false,
+      "most_common_value": "10.0",
+      "most_common_freq": 33,
+      "is_datetime": false,
+      "is_binary": false,
+      "is_boolean": false
+    }
+  ],
+  "date_range": {
+    "date_column": "ObsTime",
+    "date_min": "1970-01-01 00:00:00.000000001",
+    "date_max": "1970-01-01 00:00:00.000000031",
+    "date_span_days": 0
+  },
+  "timeseries_features": {
+    "timeseries_info": {
+      "date_column": "ObsTime",
+      "date_min": "1970-01-01 00:00:00.000000001",
+      "date_max": "1970-01-01 00:00:00.000000031",
+      "date_span_days": 0
+    },
+    "numeric_col_used": "ObsTime",
+    "variance": 77.43514297612558,
+    "cv": 0.5594983588326325,
+    "trend_simple": 8.155195957504889e-06
+  },
+  "correlation_summary": {
+    "numeric_columns": 24,
+    "high_correlation_pairs": [
+      {
+        "col1": "ObsTime",
+        "col2": "Day",
+        "correlation": 1.0
+      },
+      {
+        "col1": "StnPres",
+        "col2": "SeaPres",
+        "correlation": 0.9998228597171702
+      },
+      {
+        "col1": "StnPres",
+        "col2": "StnPresMax",
+        "correlation": 0.9903332462045489
+      },
+      {
+        "col1": "StnPres",
+        "col2": "StnPresMin",
+        "correlation": 0.9872711310432357
+      },
+      {
+        "col1": "StnPres",
+        "col2": "T Min",
+        "correlation": -0.8021376921132717
+      }
+    ],
+    "correlation_matrix_mean_abs": 0.0389963522805583,
+    "effective_rank": 23
+  },
+  "quality_metrics": {
+    "completeness_ratio": 0.9569110662129591,
+    "constant_columns": 0,
+    "problematic_columns": [
+      {
+        "column": "ObsTime",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "StnPres",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "SeaPres",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "StnPresMax",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "StnPresMin",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Temperature",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "T Max",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "T Min",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Td dew point",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "RH",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "RHMin",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "WS",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "WD",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "WSGust",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "WDGust",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Precp",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "PrecpHour",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "PrecpMax10",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "PrecpMax10Time",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "PrecpMax60",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "PrecpMax60Time",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "SunShine",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "SunshineRate",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "GloblRad",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "VisbMean",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "EvapA",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "UVI Max",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Cloud Amount",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "TxSoil0cm",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "TxSoil5cm",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "TxSoil10cm",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "TxSoil20cm",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "TxSoil30cm",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "TxSoil50cm",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "TxSoil100cm",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Year",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Month",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Day",
+        "issues": [
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "VisbMean Auto",
+        "issues": [
+          "high_null_ratio",
+          "high_duplicate_ratio"
+        ]
+      },
+      {
+        "column": "Cloud Amount Sat",
+        "issues": [
+          "high_null_ratio",
+          "high_duplicate_ratio"
+        ]
+      }
+    ],
+    "extreme_skew_columns": 1
+  }
+}
