@@ -1,0 +1,5 @@
+tmy_col,train_col,value_convert,Note
+date,date,,
+G(h)_kWhm2,GloblRad,*3.6,GloblRad(MJ/㎡) = G(h)_kWhm2 × 3.6
+T2m_mean,Temperature,,
+RH_mean,RH,,
