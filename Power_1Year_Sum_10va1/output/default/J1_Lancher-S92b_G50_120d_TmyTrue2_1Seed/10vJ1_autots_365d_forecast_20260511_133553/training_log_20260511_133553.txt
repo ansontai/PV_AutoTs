@@ -1,0 +1,69 @@
+[2026-05-11 13:35:53] [CONFIG] Using ALL regressors (physical + temporal): 25 features
+[2026-05-11 13:35:53] [CONFIG] Using TMY as future exogenous regressors
+[2026-05-11 13:35:53] Starting AutoTS 365-day forecast pipeline.
+[2026-05-11 13:35:53] Train file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\SolarRecord(260228)_d_forWh_WithCodis[date].csv
+[2026-05-11 13:35:53] TMY file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\tmy_24.148_120.703_2005_2023[UTC+8][daily][mapped][dateAdj].csv
+[2026-05-11 13:35:53] PVGIS timeseries file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\Timeseries_24.148_120.703_E5_0kWp_crystSi_25_35deg_1deg_2005_2005[UTC+8][daily][scaled][dateAdj].csv
+[2026-05-11 13:35:53] Run output dir: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\J1_Lancher-S92b_G50_120d_TmyTrue2_1Seed\10vJ1_autots_365d_forecast_20260511_133553
+[2026-05-11 13:35:53] Loaded training data: rows=313, date_range=2025-04-22 -> 2026-02-28
+[2026-05-11 13:35:53] Loaded PVGIS timeseries data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-11 13:35:53] Loaded TMY data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-11 13:35:53] Building PVGIS series by month-day mapping (year is ignored).
+[2026-05-11 13:35:53] Forecast horizon: 2026-03-01 -> 2027-02-28 (365 days)
+[2026-05-11 13:35:53] Fitting AutoTS model with future_regressor on training data. fit_forecast_length=120 (mode=fixed, raw=120), predict_forecast_length=365
+[2026-05-11 13:35:53] Attempting AutoTS fit with num_validations=3
+[2026-05-11 13:35:54] Fit failed with num_validations=3; retrying with num_validations=2. Error: ValueError: invalid error value specified
+[2026-05-11 13:35:54] Attempting AutoTS fit with num_validations=2
+[2026-05-11 13:35:54] Fit failed with num_validations=2; retrying with num_validations=1. Error: ValueError: invalid error value specified
+[2026-05-11 13:35:54] Attempting AutoTS fit with num_validations=1
+[2026-05-11 13:35:55] Fit failed with num_validations=1; retrying with num_validations=0. Error: ValueError: invalid error value specified
+[2026-05-11 13:35:55] Attempting AutoTS fit with num_validations=0
+[2026-05-11 13:35:55] Fit failed with num_validations=0 (final attempt). Error: ValueError: invalid error value specified
+[2026-05-11 13:35:55] Run failed: invalid error value specified
+[2026-05-11 13:35:55] Traceback (most recent call last):
+  File "T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\10vJ1_autots_365d_forecast.py", line 1418, in main
+    model = fit_autots_with_decreasing_validations(
+        model_params=main_model_params,
+    ...<3 lines>...
+        start_validations=3,
+    )
+  File "T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\10vJ1_autots_365d_forecast.py", line 1315, in fit_autots_with_decreasing_validations
+    fitted_model = fitted_model.fit(train_target, future_regressor=future_regressor)
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\autots\evaluator\auto_ts.py", line 1324, in fit
+    self.fit_data(
+    ~~~~~~~~~~~~~^
+        df=df,
+        ^^^^^^
+    ...<4 lines>...
+        weights=weights,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\autots\evaluator\auto_ts.py", line 1202, in fit_data
+    self.future_regressor_train = self.regr_num_trans.fit_transform(
+                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        future_regressor
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\autots\tools\shaping.py", line 315, in fit_transform
+    return self._fit(df)
+           ~~~~~~~~~^^^^
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\autots\tools\shaping.py", line 256, in _fit
+    df = df.apply(pd.to_numeric, errors='ignore', downcast=self.downcast)
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\pandas\core\frame.py", line 12423, in apply
+    return op.apply().__finalize__(self, method="apply")
+           ~~~~~~~~^^
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\pandas\core\apply.py", line 1015, in apply
+    return self.apply_standard()
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\pandas\core\apply.py", line 1167, in apply_standard
+    results, res_index = self.apply_series_generator()
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\pandas\core\apply.py", line 1183, in apply_series_generator
+    results[i] = self.func(v, *self.args, **self.kwargs)
+                 ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\pandas\core\tools\numeric.py", line 183, in to_numeric
+    raise ValueError("invalid error value specified")
+ValueError: invalid error value specified
+

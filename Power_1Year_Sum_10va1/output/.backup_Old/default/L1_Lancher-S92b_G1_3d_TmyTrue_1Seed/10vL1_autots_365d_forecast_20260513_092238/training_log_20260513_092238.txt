@@ -1,0 +1,44 @@
+[2026-05-13 09:22:38] [CONFIG] Using PHYSICAL regressors only: 3 features
+[2026-05-13 09:22:38] [CONFIG] Using TMY as future exogenous regressors
+[2026-05-13 09:22:38] Starting AutoTS 365-day forecast pipeline.
+[2026-05-13 09:22:38] Train file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\SolarRecord(260228)_d_forWh_WithCodis[date].csv
+[2026-05-13 09:22:38] TMY file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\tmy_24.148_120.703_2005_2023[UTC+8][daily][mapped][dateAdj].csv
+[2026-05-13 09:22:38] PVGIS timeseries file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\Timeseries_24.148_120.703_E5_0kWp_crystSi_25_35deg_1deg_2005_2005[UTC+8][daily][scaled][vB][dateAdj].csv
+[2026-05-13 09:22:38] Run output dir: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238
+[2026-05-13 09:22:38] Loaded training data: rows=313, date_range=2025-04-22 -> 2026-02-28
+[2026-05-13 09:22:38] Loaded PVGIS timeseries data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-13 09:22:38] Loaded TMY data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-13 09:22:38] Building PVGIS series by month-day mapping (year is ignored).
+[2026-05-13 09:22:38] Forecast horizon: 2026-03-01 -> 2027-02-28 (365 days)
+[2026-05-13 09:22:38] Fitting AutoTS model with future_regressor on training data. fit_forecast_length=3 (mode=fixed, raw=3), predict_forecast_length=365
+[2026-05-13 09:22:38] Attempting AutoTS fit with num_validations=3
+[2026-05-13 09:25:35] Successfully fitted with num_validations=3
+[2026-05-13 09:25:35] Predicting 365 days with TMY-based future_regressor.
+[2026-05-13 09:25:35] DEBUG: train_target rows=313 fit_fr_shape=(313, 3)
+[2026-05-13 09:25:35] DEBUG: model forecast_length param=3
+[2026-05-13 09:25:35] DEBUG: requested FORECAST_LENGTH=365
+[2026-05-13 09:25:35] DEBUG: model.window=None
+[2026-05-13 09:25:35] Saved forecast CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\forecast_365d_20260513_092238.csv
+[2026-05-13 09:25:35] Failed to compute/save aggregated forecasts: Invalid frequency: Y. Failed to parse with error message: ValueError("'Y' is no longer supported for offsets. Please use 'YE' instead.")
+[2026-05-13 09:25:35] Saved forecast totals CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\forecast_365d_totals_20260513_092238.csv
+[2026-05-13 09:25:35] Saved annual consistency metrics CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\forecast_365d_consistency_20260513_092238.csv (Bias=313.40 Wh, RelError=17.15%)
+[2026-05-13 09:25:35] Running main model validation on last 3 days.
+[2026-05-13 09:25:36] Saved AutoTS templates CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\autots_templates_20260513_092238.csv
+[2026-05-13 09:25:36] Saved AutoTS templates JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\autots_templates_20260513_092238.json
+[2026-05-13 09:25:36] Saved AutoTS best template CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\autots_best_template_20260513_092238.csv
+[2026-05-13 09:25:36] Saved AutoTS best template JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\autots_best_template_20260513_092238.json
+[2026-05-13 09:25:36] Prepared weight summaries: models=454, features=4, parameters=76
+[2026-05-13 09:25:36] Building PVGIS series by month-day mapping (year is ignored).
+[2026-05-13 09:25:36] Building E_day_kWh series by month-day mapping (year is ignored).
+[2026-05-13 09:25:37] Saved holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\AutoTS_forecast_vs_actual_vs_lastvalue_3-format2.png
+[2026-05-13 09:25:37] Saved holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\forecast_vs_actual_vs_lastvalue_3.png
+[2026-05-13 09:25:37] Saved PVGIS holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\PvgisForecast(min_max_scale)_vs_actual_vs_lastvalue.png
+[2026-05-13 09:25:37] Saved E_day_kWh holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\PvgisForecast_vs_actual_vs_lastvalue.png
+[2026-05-13 09:25:38] Saved 365-day future forecast plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\forecast_365d_future_20260513_092238.png
+[2026-05-13 09:25:38] Saved metrics CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\model_metrics_20260513_092238.csv
+[2026-05-13 09:25:38] Saved effective settings CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\effective_settings_20260513_092238.csv
+[2026-05-13 09:25:38] Saved effective settings JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\effective_settings_20260513_092238.json
+[2026-05-13 09:25:38] Saved weight summary CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\weight_summary_20260513_092238.csv
+[2026-05-13 09:25:38] Saved weight summary JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\weight_summary_20260513_092238.json
+[2026-05-13 09:25:38] Saved model pickle: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092238\autots_model_20260513_092238.pkl
+[2026-05-13 09:25:38] Run completed successfully.

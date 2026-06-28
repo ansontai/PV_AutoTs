@@ -1,0 +1,23 @@
+[2026-05-04 05:33:20] [CONFIG] Using PHYSICAL regressors only: 3 features
+[2026-05-04 05:33:20] Starting AutoTS 365-day forecast pipeline.
+[2026-05-04 05:33:20] Train file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\SolarRecord(260228)_d_forWh_WithCodis[date].csv
+[2026-05-04 05:33:20] TMY file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\tmy_24.148_120.703_2005_2023[UTC+8][daily][mapped][dateAdj].csv
+[2026-05-04 05:33:20] Run output dir: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260504_053320
+[2026-05-04 05:33:20] Loaded training data: rows=313, date_range=2025-04-22 -> 2026-02-28
+[2026-05-04 05:33:20] Loaded TMY data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-04 05:33:20] Forecast horizon: 2026-03-01 -> 2027-02-28 (365 days)
+[2026-05-04 05:33:20] Fitting AutoTS model with future_regressor on training data. fit_forecast_length=104, predict_forecast_length=365
+[2026-05-04 05:43:56] Predicting 365 days with TMY-based future_regressor.
+[2026-05-04 05:43:56] Saved forecast CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260504_053320\forecast_365d_20260504_053320.csv
+[2026-05-04 05:43:56] Running holdout backtest with holdout_length=60 days.
+[2026-05-04 05:50:06] Prepared weight summaries: models=2158, features=4, parameters=32
+[2026-05-04 05:50:06] Saved holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260504_053320\AutoTS_forecast_vs_actual_vs_lastvalue_60-format2.png
+[2026-05-04 05:50:07] Saved holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260504_053320\forecast_vs_actual_vs_lastvalue_60.png
+[2026-05-04 05:50:07] Saved 365-day future forecast plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260504_053320\forecast_365d_future_20260504_053320.png
+[2026-05-04 05:50:07] Saved metrics CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260504_053320\model_metrics_20260504_053320.csv
+[2026-05-04 05:50:07] Saved effective settings CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260504_053320\effective_settings_20260504_053320.csv
+[2026-05-04 05:50:07] Saved effective settings JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260504_053320\effective_settings_20260504_053320.json
+[2026-05-04 05:50:08] Saved weight summary CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260504_053320\weight_summary_20260504_053320.csv
+[2026-05-04 05:50:08] Saved weight summary JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260504_053320\weight_summary_20260504_053320.json
+[2026-05-04 05:50:08] Saved model pickle: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260504_053320\autots_model_20260504_053320.pkl
+[2026-05-04 05:50:08] Run completed successfully.

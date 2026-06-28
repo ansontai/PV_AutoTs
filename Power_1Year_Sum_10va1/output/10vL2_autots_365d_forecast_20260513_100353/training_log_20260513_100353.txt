@@ -1,0 +1,54 @@
+[2026-05-13 10:03:53] [CONFIG] Using PHYSICAL regressors only: 3 features
+[2026-05-13 10:03:53] [CONFIG] Using TMY as future exogenous regressors
+[2026-05-13 10:03:53] Starting AutoTS 365-day forecast pipeline.
+[2026-05-13 10:03:53] Train file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\SolarRecord(260228)_d_forWh_WithCodis[date].csv
+[2026-05-13 10:03:53] TMY file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\tmy_24.148_120.703_2005_2023[UTC+8][daily][mapped][dateAdj].csv
+[2026-05-13 10:03:53] PVGIS timeseries file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\Timeseries_24.148_120.703_E5_0kWp_crystSi_25_35deg_1deg_2005_2005[UTC+8][daily][scaled][vB][dateAdj].csv
+[2026-05-13 10:03:53] Run output dir: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353
+[2026-05-13 10:03:53] Loaded training data: rows=313, date_range=2025-04-22 -> 2026-02-28
+[2026-05-13 10:03:53] Loaded PVGIS timeseries data: rows=366, date_range=2026-03-01 -> 2027-03-01, columns=['P_Wh_min_max_scaled', 'P', 'E_day_kWh']
+[2026-05-13 10:03:53] Loaded TMY data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-13 10:03:53] Building PVGIS series by month-day mapping (year is ignored).
+[2026-05-13 10:03:53] Building PVGIS raw P series by month-day mapping (year is ignored).
+[2026-05-13 10:03:53] Computing DOY-based P95 scaling factors...
+[2026-05-13 10:03:53] Computing DOY-based mean scaling factors...
+[2026-05-13 10:03:53] Computing DOY-based median scaling factors...
+[2026-05-13 10:03:53] Computing DOY-based regression scaling factors...
+[2026-05-13 10:03:53] Building PVGIS P95-scaled series by DOY mapping...
+[2026-05-13 10:03:53] Building PVGIS mean-scaled series by DOY mapping...
+[2026-05-13 10:03:53] Building PVGIS median-scaled series by DOY mapping...
+[2026-05-13 10:03:53] Building PVGIS regression-scaled series by DOY mapping...
+[2026-05-13 10:03:53] Forecast horizon: 2026-03-01 -> 2027-02-28 (365 days)
+[2026-05-13 10:03:53] Fitting AutoTS model with future_regressor on training data. fit_forecast_length=12 (mode=fixed, raw=12), predict_forecast_length=365
+[2026-05-13 10:03:53] Attempting AutoTS fit with num_validations=3
+[2026-05-13 10:06:39] Successfully fitted with num_validations=3
+[2026-05-13 10:06:39] Predicting 365 days with TMY-based future_regressor.
+[2026-05-13 10:06:39] DEBUG: train_target rows=313 fit_fr_shape=(313, 3)
+[2026-05-13 10:06:39] DEBUG: model forecast_length param=12
+[2026-05-13 10:06:39] DEBUG: requested FORECAST_LENGTH=365
+[2026-05-13 10:06:39] DEBUG: model.window=None
+[2026-05-13 10:06:40] Saved forecast CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\forecast_365d_20260513_100353.csv (columns=['date', 'forecast', 'lower_bound', 'upper_bound', 'P', 'P_Wh_min_max_scaled', 'P(PVGIS_adj_P95_scaling)', 'P(PVGIS_adj_mean_scaling)', 'P(PVGIS_adj_median_scaling)', 'P(PVGIS_adj_regression_scaling)'])
+[2026-05-13 10:06:40] Forecast output includes PVGIS_P raw values (total=114968.70)
+[2026-05-13 10:06:40] Failed to compute/save aggregated forecasts: Invalid frequency: Y. Failed to parse with error message: ValueError("'Y' is no longer supported for offsets. Please use 'YE' instead.")
+[2026-05-13 10:06:40] Saved forecast totals CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\forecast_365d_totals_20260513_100353.csv (PVGIS_P=114968.70, P_Wh_min_max_scaled=1826.99)
+[2026-05-13 10:06:40] Saved annual consistency metrics CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\forecast_365d_consistency_20260513_100353.csv (Bias=295.71 Wh, RelError=16.19%)
+[2026-05-13 10:06:40] Running main model validation on last 12 days.
+[2026-05-13 10:06:41] Saved AutoTS templates CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\autots_templates_20260513_100353.csv
+[2026-05-13 10:06:41] Saved AutoTS templates JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\autots_templates_20260513_100353.json
+[2026-05-13 10:06:41] Saved AutoTS best template CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\autots_best_template_20260513_100353.csv
+[2026-05-13 10:06:41] Saved AutoTS best template JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\autots_best_template_20260513_100353.json
+[2026-05-13 10:06:41] Prepared weight summaries: models=544, features=4, parameters=80
+[2026-05-13 10:06:41] Building PVGIS series by month-day mapping (year is ignored).
+[2026-05-13 10:06:41] Building E_day_kWh series by month-day mapping (year is ignored).
+[2026-05-13 10:06:41] Matplotlib not available; skipping plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\AutoTS_forecast_vs_actual_vs_lastvalue_12-format2.png
+[2026-05-13 10:06:41] Matplotlib not available; skipping plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\forecast_vs_actual_vs_lastvalue_12.png
+[2026-05-13 10:06:41] Matplotlib not available; skipping plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\PvgisForecast(min_max_scale)_vs_actual_vs_lastvalue.png
+[2026-05-13 10:06:41] Matplotlib not available; skipping plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\PvgisForecast_vs_actual_vs_lastvalue.png
+[2026-05-13 10:06:41] Matplotlib not available; skipping plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\forecast_365d_future_20260513_100353.png
+[2026-05-13 10:06:41] Saved metrics CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\model_metrics_20260513_100353.csv
+[2026-05-13 10:06:41] Saved effective settings CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\effective_settings_20260513_100353.csv
+[2026-05-13 10:06:41] Saved effective settings JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\effective_settings_20260513_100353.json
+[2026-05-13 10:06:42] Saved weight summary CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\weight_summary_20260513_100353.csv
+[2026-05-13 10:06:42] Saved weight summary JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\weight_summary_20260513_100353.json
+[2026-05-13 10:06:42] Saved model pickle: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100353\autots_model_20260513_100353.pkl
+[2026-05-13 10:06:42] Run completed successfully.

@@ -1,0 +1,61 @@
+[2026-05-13 15:53:17] [CONFIG] Using PHYSICAL regressors only: 3 features
+[2026-05-13 15:53:17] [CONFIG] Using TMY as future exogenous regressors
+[2026-05-13 15:53:17] Starting AutoTS 365-day forecast pipeline.
+[2026-05-13 15:53:17] Train file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\SolarRecord(260228)_d_forWh_WithCodis[date].csv
+[2026-05-13 15:53:17] TMY file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\tmy_24.148_120.703_2005_2023[UTC+8][daily][mapped][dateAdj].csv
+[2026-05-13 15:53:17] PVGIS timeseries file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\Timeseries_24.148_120.703_E5_0kWp_crystSi_25_35deg_1deg_2005_2005[UTC+8][daily][scaled][vB][dateAdj].csv
+[2026-05-13 15:53:17] Run output dir: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317
+[2026-05-13 15:53:17] Loaded training data: rows=313, date_range=2025-04-22 -> 2026-02-28
+[2026-05-13 15:53:17] Loaded PVGIS timeseries data: rows=366, date_range=2026-03-01 -> 2027-03-01, columns=['P_Wh_min_max_scaled', 'P', 'E_day_kWh']
+[2026-05-13 15:53:17] Loaded TMY data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-13 15:53:17] Building PVGIS series by month-day mapping (year is ignored).
+[2026-05-13 15:53:17] Building PVGIS raw P series by month-day mapping (year is ignored).
+[2026-05-13 15:53:17] Computing DOY-based P95 scaling factors...
+[2026-05-13 15:53:17] Computing DOY-based mean scaling factors...
+[2026-05-13 15:53:17] Computing DOY-based median scaling factors...
+[2026-05-13 15:53:17] Computing DOY-based regression scaling factors (A and B)...
+[2026-05-13 15:53:17] Regression scaling has no DOY groups with >=2 samples; using default slope/intercept values for all DOYs.
+[2026-05-13 15:53:17] Saved regression coefficients to: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\regression_coefficients_DOY_20260513_155317.csv
+[2026-05-13 15:53:17]   Total DOYs: 366
+[2026-05-13 15:53:17]   A_slope range: [1.0000, 1.0000]
+[2026-05-13 15:53:17]   B_intercept range: [0.0000, 0.0000]
+[2026-05-13 15:53:17]   Mean sample_count per DOY: 0.9
+[2026-05-13 15:53:17] Generated regression methodology documentation: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\REGRESSION_COEFFICIENTS_METHODOLOGY.md
+[2026-05-13 15:53:17] Building PVGIS P95-scaled series by DOY mapping...
+[2026-05-13 15:53:17] Building PVGIS mean-scaled series by DOY mapping...
+[2026-05-13 15:53:17] Building PVGIS median-scaled series by DOY mapping...
+[2026-05-13 15:53:17] Building PVGIS regression-scaled series by DOY mapping...
+[2026-05-13 15:53:17] Forecast horizon: 2026-03-01 -> 2027-02-28 (365 days)
+[2026-05-13 15:53:17] Fitting AutoTS model with future_regressor on training data. fit_forecast_length=3 (mode=fixed, raw=3), predict_forecast_length=365
+[2026-05-13 15:53:17] Attempting AutoTS fit with num_validations=3
+[2026-05-13 15:57:55] Successfully fitted with num_validations=3
+[2026-05-13 15:57:55] Predicting 365 days with TMY-based future_regressor.
+[2026-05-13 15:57:55] DEBUG: train_target rows=313 fit_fr_shape=(313, 3)
+[2026-05-13 15:57:55] DEBUG: model forecast_length param=3
+[2026-05-13 15:57:55] DEBUG: requested FORECAST_LENGTH=365
+[2026-05-13 15:57:55] DEBUG: model.window=None
+[2026-05-13 15:57:55] Saved forecast CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\forecast_365d_20260513_155317.csv (columns=['date', 'forecast', 'lower_bound', 'upper_bound', 'P', 'P_Wh_min_max_scaled', 'P(PVGIS_adj_P95_scaling)', 'P(PVGIS_adj_mean_scaling)', 'P(PVGIS_adj_median_scaling)', 'P(PVGIS_adj_regression_scaling)'])
+[2026-05-13 15:57:55] Forecast output includes PVGIS_P raw values (total=114968.70)
+[2026-05-13 15:57:55] Failed to compute/save aggregated forecasts: Invalid frequency: Y. Failed to parse with error message: ValueError("'Y' is no longer supported for offsets. Please use 'YE' instead.")
+[2026-05-13 15:57:55] Saved forecast totals CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\forecast_365d_totals_20260513_155317.csv (PVGIS_P=114968.70, P_Wh_min_max_scaled=1826.99)
+[2026-05-13 15:57:55] Saved annual consistency metrics CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\forecast_365d_consistency_20260513_155317.csv (Bias=515.96 Wh, RelError=28.24%, Accuracy=71.76%, PercBias=28.24%)
+[2026-05-13 15:57:55] Running main model validation on last 3 days.
+[2026-05-13 15:57:56] Saved AutoTS templates CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\autots_templates_20260513_155317.csv
+[2026-05-13 15:57:56] Saved AutoTS templates JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\autots_templates_20260513_155317.json
+[2026-05-13 15:57:56] Saved AutoTS best template CSV: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\autots_best_template_20260513_155317.csv
+[2026-05-13 15:57:56] Saved AutoTS best template JSON: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\autots_best_template_20260513_155317.json
+[2026-05-13 15:57:56] Prepared weight summaries: models=460, features=4, parameters=10
+[2026-05-13 15:57:56] Building PVGIS series by month-day mapping (year is ignored).
+[2026-05-13 15:57:56] Building E_day_kWh series by month-day mapping (year is ignored).
+[2026-05-13 15:57:56] Building PVGIS P95-scaled series by DOY mapping...
+[2026-05-13 15:57:56] Building PVGIS mean-scaled series by DOY mapping...
+[2026-05-13 15:57:56] Building PVGIS median-scaled series by DOY mapping...
+[2026-05-13 15:57:56] Building PVGIS regression-scaled series by DOY mapping...
+[2026-05-13 15:57:56] Saved holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\AutoTS_forecast_vs_actual_vs_lastvalue_3-format2.png
+[2026-05-13 15:57:57] Saved holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\forecast_vs_actual_vs_lastvalue_3.png
+[2026-05-13 15:57:57] Saved PVGIS holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\PvgisForecast(min_max_scale)_vs_actual_vs_lastvalue.png
+[2026-05-13 15:57:58] Saved E_day_kWh holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\PvgisForecast_vs_actual_vs_lastvalue.png
+[2026-05-13 15:57:59] Saved P95 scaling holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\PvgisForecast(P(PVGIS_adj_P95_scaling))_vs_actual_vs_lastvalue.png
+[2026-05-13 15:57:59] Saved Mean scaling holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\PvgisForecast(P(PVGIS_adj_mean_scaling))_vs_actual_vs_lastvalue.png
+[2026-05-13 15:57:59] Saved Median scaling holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\PvgisForecast(P(PVGIS_adj_median_scaling))_vs_actual_vs_lastvalue.png
+[2026-05-13 15:58:00] Saved Regression scaling holdout comparison plot: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L5_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL5_autots_365d_forecast_20260513_155317\PvgisForecast(P(PVGIS_adj_regression_scaling))_vs_actual_vs_lastvalue.png

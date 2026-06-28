@@ -1,0 +1,9 @@
+[2026-05-10 14:31:50] [CONFIG] Using PHYSICAL regressors only: 3 features
+[2026-05-10 14:31:50] Starting AutoTS 365-day forecast pipeline.
+[2026-05-10 14:31:50] Train file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\SolarRecord(260228)_d_forWh_WithCodis[date].csv
+[2026-05-10 14:31:50] TMY file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\tmy_24.148_120.703_2005_2023[UTC+8][daily][mapped][dateAdj].csv
+[2026-05-10 14:31:50] Run output dir: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S99_120d_1Seed\10vE1_autots_365d_forecast_20260510_143150
+[2026-05-10 14:31:50] Loaded training data: rows=313, date_range=2025-04-22 -> 2026-02-28
+[2026-05-10 14:31:50] Loaded TMY data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-10 14:31:50] Forecast horizon: 2026-03-01 -> 2027-02-28 (365 days)
+[2026-05-10 14:31:50] Fitting AutoTS model with future_regressor on training data. fit_forecast_length=120 (mode=fixed, raw=120), predict_forecast_length=365

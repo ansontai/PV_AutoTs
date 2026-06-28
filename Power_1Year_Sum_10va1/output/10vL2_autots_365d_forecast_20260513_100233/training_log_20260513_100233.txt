@@ -1,0 +1,47 @@
+[2026-05-13 10:02:33] [CONFIG] Using PHYSICAL regressors only: 3 features
+[2026-05-13 10:02:33] [CONFIG] Using TMY as future exogenous regressors
+[2026-05-13 10:02:33] Starting AutoTS 365-day forecast pipeline.
+[2026-05-13 10:02:33] Train file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\SolarRecord(260228)_d_forWh_WithCodis[date].csv
+[2026-05-13 10:02:33] TMY file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\tmy_24.148_120.703_2005_2023[UTC+8][daily][mapped][dateAdj].csv
+[2026-05-13 10:02:33] PVGIS timeseries file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\Timeseries_24.148_120.703_E5_0kWp_crystSi_25_35deg_1deg_2005_2005[UTC+8][daily][scaled][vB][dateAdj].csv
+[2026-05-13 10:02:33] Run output dir: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\10vL2_autots_365d_forecast_20260513_100233
+[2026-05-13 10:02:33] Loaded training data: rows=313, date_range=2025-04-22 -> 2026-02-28
+[2026-05-13 10:02:33] Loaded PVGIS timeseries data: rows=366, date_range=2026-03-01 -> 2027-03-01, columns=['P_Wh_min_max_scaled', 'P', 'E_day_kWh']
+[2026-05-13 10:02:33] Loaded TMY data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-13 10:02:33] Building PVGIS series by month-day mapping (year is ignored).
+[2026-05-13 10:02:33] Building PVGIS raw P series by month-day mapping (year is ignored).
+[2026-05-13 10:02:33] Computing DOY-based P95 scaling factors...
+[2026-05-13 10:02:33] Computing DOY-based mean scaling factors...
+[2026-05-13 10:02:33] Computing DOY-based median scaling factors...
+[2026-05-13 10:02:33] Computing DOY-based regression scaling factors...
+[2026-05-13 10:02:33] Building PVGIS P95-scaled series by DOY mapping...
+[2026-05-13 10:02:33] Building PVGIS mean-scaled series by DOY mapping...
+[2026-05-13 10:02:33] Building PVGIS median-scaled series by DOY mapping...
+[2026-05-13 10:02:33] Building PVGIS regression-scaled series by DOY mapping...
+[2026-05-13 10:02:33] Run failed: operands could not be broadcast together with shapes (365,) (365,2) 
+[2026-05-13 10:02:34] Traceback (most recent call last):
+  File "T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\10vL2_autots_365d_forecast.py", line 1785, in main
+    pvgis_365d_regression = build_pvgis_regression_scaled_series(pvgis_df=pvgis_df, target_index=forecast_index, scaling_k=k_regression, logger=logger)
+  File "T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\10vL2_autots_365d_forecast.py", line 616, in build_pvgis_regression_scaled_series
+    out = out * scale_factors
+          ~~~~^~~~~~~~~~~~~~~
+  File "C:\Users\anson\AppData\Roaming\Python\Python313\site-packages\pandas\core\ops\common.py", line 85, in new_method
+    return method(self, other)
+  File "C:\Users\anson\AppData\Roaming\Python\Python313\site-packages\pandas\core\arraylike.py", line 206, in __mul__
+    return self._arith_method(other, operator.mul)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\anson\AppData\Roaming\Python\Python313\site-packages\pandas\core\series.py", line 6751, in _arith_method
+    return base.IndexOpsMixin._arith_method(self, other, op)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\anson\AppData\Roaming\Python\Python313\site-packages\pandas\core\base.py", line 1644, in _arith_method
+    result = ops.arithmetic_op(lvalues, rvalues, op)
+  File "C:\Users\anson\AppData\Roaming\Python\Python313\site-packages\pandas\core\ops\array_ops.py", line 289, in arithmetic_op
+    res_values = _na_arithmetic_op(left, right, op)  # type: ignore[arg-type]
+  File "C:\Users\anson\AppData\Roaming\Python\Python313\site-packages\pandas\core\ops\array_ops.py", line 220, in _na_arithmetic_op
+    result = func(left, right)
+  File "C:\Users\anson\AppData\Roaming\Python\Python313\site-packages\pandas\core\computation\expressions.py", line 243, in evaluate
+    return _evaluate(op, op_str, left_op, right_op)  # type: ignore[misc]
+  File "C:\Users\anson\AppData\Roaming\Python\Python313\site-packages\pandas\core\computation\expressions.py", line 74, in _evaluate_standard
+    return op(left_op, right_op)
+ValueError: operands could not be broadcast together with shapes (365,) (365,2) 
+

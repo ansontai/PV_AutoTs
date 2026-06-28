@@ -1,0 +1,18 @@
+[2026-05-10 17:07:20] [CONFIG] Using PHYSICAL regressors only: 3 features
+[2026-05-10 17:07:20] Starting AutoTS 365-day forecast pipeline.
+[2026-05-10 17:07:20] Train file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\SolarRecord(260228)_d_forWh_WithCodis[date].csv
+[2026-05-10 17:07:20] TMY file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\tmy_24.148_120.703_2005_2023[UTC+8][daily][mapped][dateAdj].csv
+[2026-05-10 17:07:20] PVGIS timeseries file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\Timeseries_24.148_120.703_E5_0kWp_crystSi_25_35deg_1deg_2005_2005[UTC+8][daily][scaled][dateAdj].csv
+[2026-05-10 17:07:20] Run output dir: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\H1_Lancher-S99_G1_120d_1Seed\10vH1_autots_365d_forecast_20260510_170720
+[2026-05-10 17:07:20] Loaded training data: rows=313, date_range=2025-04-22 -> 2026-02-28
+[2026-05-10 17:07:20] Loaded TMY data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-10 17:07:20] Loaded PVGIS timeseries data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-10 17:07:20] Building PVGIS series by month-day mapping (year is ignored).
+[2026-05-10 17:07:20] Forecast horizon: 2026-03-01 -> 2027-02-28 (365 days)
+[2026-05-10 17:07:21] Fitting AutoTS model with future_regressor on training data. fit_forecast_length=120 (mode=fixed, raw=120), predict_forecast_length=365
+[2026-05-10 17:09:43] Predicting 365 days with TMY-based future_regressor.
+[2026-05-10 17:09:43] DEBUG: train_target rows=313 fit_fr_shape=(313, 3)
+[2026-05-10 17:09:43] DEBUG: model forecast_length param=120
+[2026-05-10 17:09:43] DEBUG: requested FORECAST_LENGTH=365
+[2026-05-10 17:09:43] DEBUG: model.window=None
+[2026-05-10 17:10:03] Predict failed on ensemble='all' long horizon; retrying with fallback ensemble='simple' to avoid mosaic ensemble.

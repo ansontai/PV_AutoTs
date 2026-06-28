@@ -1,0 +1,58 @@
+﻿file,column,used,usage_type,exists_in_other_file
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,date,True,date,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,Wh,True,target,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,DHT11_temp,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,DHT11_humidity,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,LM35_tempC,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,Temperature,True,regressor,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,T Max,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,T Max Time,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,T Min,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,T Min Time,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,Td dew point,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,RH,True,regressor,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,RHMin,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,RHMinTime,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,WGustTime,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,Precp,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,PrecpHour,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,PrecpMax10,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,PrecpMax10Time,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,PrecpMax60Time,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,SunShine,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,SunshineRate,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,GloblRad,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,EvapA,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,UVI Max,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,UVI Max Time,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,Cloud Amount,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,TxSoil0cm,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,TxSoil5cm,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,TxSoil10cm,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,TxSoil20cm,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,TxSoil30cm,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,TxSoil50cm,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,TxSoil100cm,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,Cloud Amount Sat,False,unused,False
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,day_of_year,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,sin_DOY_k1,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,cos_DOY_k1,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,sin_DOY_k2,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,cos_DOY_k2,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,sin_DOY_k3,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,cos_DOY_k3,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,month_2,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,month_3,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,month_4,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,month_5,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,month_6,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,month_7,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,month_8,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,month_9,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,month_10,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,month_11,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,month_12,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,season_autumn,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,season_spring,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,season_summer,False,unused,True
+SolarRecord(260228)_d_forWh_WithCodis[date].csv,is_weekend,False,unused,True

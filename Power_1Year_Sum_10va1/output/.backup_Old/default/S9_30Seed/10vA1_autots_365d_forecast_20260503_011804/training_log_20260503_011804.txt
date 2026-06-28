@@ -1,0 +1,8 @@
+[2026-05-03 01:18:04] Starting AutoTS 365-day forecast pipeline.
+[2026-05-03 01:18:04] Train file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\SolarRecord(260228)_d_forWh_WithCodis[date].csv
+[2026-05-03 01:18:04] TMY file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\tmy_24.148_120.703_2005_2023[UTC+8][daily][mapped][dateAdj].csv
+[2026-05-03 01:18:04] Run output dir: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\S9_30Seed\10vA1_autots_365d_forecast_20260503_011804
+[2026-05-03 01:18:04] Loaded training data: rows=313, date_range=2025-04-22 -> 2026-02-28
+[2026-05-03 01:18:04] Loaded TMY data: rows=366, date_range=2026-03-01 -> 2027-03-01
+[2026-05-03 01:18:04] Forecast horizon: 2026-03-01 -> 2027-02-28 (365 days)
+[2026-05-03 01:18:04] Fitting AutoTS model with future_regressor on training data. fit_forecast_length=104, predict_forecast_length=365

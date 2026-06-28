@@ -1,0 +1,16 @@
+[2026-05-13 09:20:55] [CONFIG] Using PHYSICAL regressors only: 3 features
+[2026-05-13 09:20:55] [CONFIG] Using TMY as future exogenous regressors
+[2026-05-13 09:20:55] Starting AutoTS 365-day forecast pipeline.
+[2026-05-13 09:20:55] Train file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\SolarRecord(260228)_d_forWh_WithCodis[date].csv
+[2026-05-13 09:20:55] TMY file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\tmy_24.148_120.703_2005_2023[UTC+8][daily][mapped][dateAdj].csv
+[2026-05-13 09:20:55] PVGIS timeseries file: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\Timeseries_24.148_120.703_E5_0kWp_crystSi_25_35deg_1deg_2005_2005[UTC+8][daily][scaled][v2][dateAdj].csv
+[2026-05-13 09:20:55] Run output dir: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\output\default\L1_Lancher-S92b_G1_3d_TmyTrue_1Seed\10vL1_autots_365d_forecast_20260513_092055
+[2026-05-13 09:20:55] Loaded training data: rows=313, date_range=2025-04-22 -> 2026-02-28
+[2026-05-13 09:20:55] Run failed: PVGIS timeseries CSV not found: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\Timeseries_24.148_120.703_E5_0kWp_crystSi_25_35deg_1deg_2005_2005[UTC+8][daily][scaled][v2][dateAdj].csv
+[2026-05-13 09:20:55] Traceback (most recent call last):
+  File "T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\10vL1_autots_365d_forecast.py", line 1448, in main
+    pvgis_df = read_pvgis_timeseries_data(PVGIS_TIMESERIES_CSV, logger)
+  File "T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\10vL1_autots_365d_forecast.py", line 213, in read_pvgis_timeseries_data
+    raise FileNotFoundError(f"PVGIS timeseries CSV not found: {csv_path}")
+FileNotFoundError: PVGIS timeseries CSV not found: T:\OneDrive\1TB\School\PV_autoTs\Power_1Year_Sum_10va1\input\Timeseries_24.148_120.703_E5_0kWp_crystSi_25_35deg_1deg_2005_2005[UTC+8][daily][scaled][v2][dateAdj].csv
+
