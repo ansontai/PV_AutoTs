@@ -9,3 +9,9 @@
 
 ## 忽略所有 output 資料夾（所有層級）
 output/
+
+
+## 但保留 Power_1Year_Sum_10vI1 這個路徑下的 output
+#!Power_1Year_Sum_10vI1/
+#!Power_1Year_Sum_10vI1/output/
+#!Power_1Year_Sum_10vI1/output/**

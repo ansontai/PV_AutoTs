@@ -1,0 +1,41 @@
+﻿matplotlib not available: cannot import name '_c_internal_utils' from partially initialized module 'matplotlib' (most likely due to a circular import) (T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\matplotlib\__init__.py)
+Warning: matplotlib not available; plotting disabled
+Resolved PVGIS scaled CSV by glob: t:\OneDrive\1TB\School\PV_autoTs\Power_day_v4c-autoTs_vs_PVGIS_AddPvgisPredit\input\Timeseries_24.148_120.703_E5_0kWp_crystSi_25_35deg_1deg_2005_2005[UTC+8][daily][scaled].csv
+Applied CLI overrides: default_max_generations, horizons, InfiniteLoop, default_model_list, default_ensemble, default_n_jobs, default_transformer_list, default_num_validations, ENABLE_FUTURE_REGRESSOR, ENABLE_FIT_FUTURE_REGRESSOR, ENABLE_PREDICT_FUTURE_REGRESSOR, ENABLE_PVGIS_AS_FUTURE_REGRESSOR
+Using input CSV: t:\OneDrive\1TB\School\PV_autoTs\Power_day_v4c-autoTs_vs_PVGIS_AddPvgisPredit\input\SolarRecord(260228)_d_forWh_WithCodis.csv
+Prepared features, dataframe shape: (313, 127)
+Wrote effective settings to: t:\OneDrive\1TB\School\PV_autoTs\Power_day_v4c-autoTs_vs_PVGIS_AddPvgisPredit\output\6v4c-autoTs_WeatherToDayWh_260416_095744-81\effective_settings.json
+
+===== 預測未來 3 天，測試集長度 3 =====
+Using 4 cpus for n_jobs.
+python.exe : Traceback (most recent call last):
+At line:1 char:1
++ & .venv\Scripts\python.exe t:/OneDrive/1TB/School/PV_autoTs/Power_day ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last) 
+   ::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "t:\OneDrive\1TB\School\PV_autoTs\Power_day_v4c-autoTs_vs_PVGIS_AddPvgis
+Predit\6v4c-autoTs_WeatherToDayWh.py", line 2186, in <module>
+    main()
+    ~~~~^^
+  File "t:\OneDrive\1TB\School\PV_autoTs\Power_day_v4c-autoTs_vs_PVGIS_AddPvgis
+Predit\6v4c-autoTs_WeatherToDayWh.py", line 1760, in main
+    model = AutoTS(model_list=model_list_arg, **inst_kwargs)
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\autots\evaluat
+or\auto_ts.py", line 392, in __init__
+    random_template = RandomTemplate(
+        len(self.model_list) * 5,
+    ...<3 lines>...
+        models_mode=self.models_mode,
+    )
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\autots\evaluat
+or\auto_model.py", line 2658, in RandomTemplate
+    model_list, model_prob = model_list_to_dict(model_list)
+                             ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "T:\OneDrive\1TB\School\PV_autoTs\.venv\Lib\site-packages\autots\models\
+model_list.py", line 510, in model_list_to_dict
+    raise ValueError("model_list type not recognized.")
+ValueError: model_list type not recognized.
+Running: 'T:\OneDrive\1TB\School\PV_autoTs\.venv\Scripts\python.exe' 't:\OneDrive\1TB\School\PV_autoTs\Power_day_v4c-autoTs_vs_PVGIS_AddPvgisPredit\6v4c-autoTs_WeatherToDayWh.py' --default_max_generations 1 --horizons '[3, 2]' --InfiniteLoop False --default_model_list '[\' --default_ensemble '["simple"]' --default_n_jobs -1 --default_transformer_list superFast --default_num_validations 3 --enable_future_regressor False --enable_fit_future_regressor False --enable_predict_future_regressor False --enable_pvgis_fr False 'ARIMA\]' --default_transformer_list superFast --default_num_validations 1 --default_n_jobs -1 --InfiniteLoop False
